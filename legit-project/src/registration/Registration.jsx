@@ -35,7 +35,7 @@ function Registration() {
                 setPasswordmsg("Write at least 8 characters")
                 setPasswordClass("")
             } else {
-                setPassword("")
+                setPasswordmsg("")
                 setPasswordClass("field-filled")
             }
         } else {
@@ -75,7 +75,7 @@ function Registration() {
 
                 <div className="field">
                     <label htmlFor="email">Password</label>
-                    <input type="password" name="password" id="password" value={password} className={emailClass} onChange={p => handlePassword(p.target.value)} required />
+                    <input type="password" name="password" id="password" value={password} className={passwordClass} onChange={p => handlePassword(p.target.value)} required />
                     <p>{passwordmsg}</p>
                 </div>
 

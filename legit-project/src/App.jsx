@@ -7,7 +7,7 @@ function App() {
     <>
       <h1>Legit Bussines</h1>
       <Link to="/registration">
-        <button classname="btn">Get started</button>
+        <button className="btn">Get started</button>
       </Link>
 
 
