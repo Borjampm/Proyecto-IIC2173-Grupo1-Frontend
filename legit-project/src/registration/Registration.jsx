@@ -14,7 +14,7 @@ function Registration() {
 
     const [msg, setMsg] = useState('')
 
-    const checkFields = () => {
+    const checkFields = () => {     // Revisa que los fields del form estén completos, para permitir realizar el registrp
         if (emailClass === "field-filled" && passwordClass === "field-filled") {
             setEnabledButton(false)
         } else{
@@ -22,7 +22,7 @@ function Registration() {
         }
     }
     
-    const handleEmail = (e) => {
+    const handleEmail = (e) => {     // Revisa que el email tenga @ y que no esté vacío
         if (e != "") {
             setEmail(e)
             if (!e.includes("@")) {
@@ -31,7 +31,6 @@ function Registration() {
             } else {
                 setEmailmsg("")
                 setEmailClass("field-filled")
-
             }
         } else {
             setEmail("")
@@ -40,7 +39,7 @@ function Registration() {
         checkFields()
     }
 
-    const handlePassword = (p) => {
+    const handlePassword = (p) => {     // Revisa que la contraseña tenga al menos 8 caracteres
         if (p != "") {
             setPassword(p)
             if (p.length < 8) {
@@ -68,7 +67,6 @@ function Registration() {
         }).catch((error) => {
             setMsg("Error al registrarse :(")
         })
-
     }
 
 
