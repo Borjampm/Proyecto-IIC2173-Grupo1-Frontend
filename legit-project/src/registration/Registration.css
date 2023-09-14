@@ -1,0 +1,44 @@
+.login-fields {
+    border: 5px solid #8BB09E;
+    height: 400px;
+    background-color: #F3F9F6;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #078448;
+    align-items: center;
+    font-size: 20px;
+}
+
+.field {
+    font-weight: 600;
+}
+
+.field input {
+    display: block;
+    border:none;
+    height: 30px;
+    background-color: #F3F9F6;
+    border-bottom: 2px solid #078448;
+    font-size: 15px;
+    transition-duration: 3s;
+}
+
+.field input:focus {
+    pointer-events: none;
+    outline: none;
+}
+
+.field .field-filled{
+    background-color: #B5DAC870;
+    transition-duration: 1.5s;
+}
+
+#register-form p{
+    font-size: 15px;
+    margin: 0px;
+    color: #011A0E;
+    font-weight: 200;
+    height: 15px;
+}
