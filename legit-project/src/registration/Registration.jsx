@@ -37,7 +37,7 @@ function Registration() {
             } else {
                 setPasswordmsg("")
                 setPasswordClass("field-filled")
-            }
+            } 
         } else {
             setPassword("")
             setPasswordClass("")

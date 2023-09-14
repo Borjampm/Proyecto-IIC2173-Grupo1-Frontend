@@ -17,7 +17,7 @@
 }
 
 .field input {
-    display: block;
+    display: block; 
     border:none;
     height: 2em;
     background-color: #F3F9F6;
