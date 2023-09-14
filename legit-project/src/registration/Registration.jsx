@@ -2,13 +2,13 @@ import { useState } from 'react'
 import './Registration.css'
 
 function Registration() {
-    const [email, setEmail] = useState('')
-    const [emailClass, setEmailClass] = useState('')
-    const [emailmsg, setEmailmsg] = useState('')
+    const [email, setEmail] = useState('')                      // Valor ingresado en la casilla email
+    const [emailClass, setEmailClass] = useState('')            // Valor que determina si se agrega una clase cuando el campo está lleno
+    const [emailmsg, setEmailmsg] = useState('')                // Mensaje de error para el email cuando el campo no está lleno correctamente
 
-    const [password, setPassword] = useState('')
-    const [passwordClass, setPasswordClass] = useState('')
-    const [passwordmsg, setPasswordmsg] = useState('')
+    const [password, setPassword] = useState('')               // Valor ingresado en la casilla password
+    const [passwordClass, setPasswordClass] = useState('')     // Valor que determina si se agrega una clase cuando el campo está lleno
+    const [passwordmsg, setPasswordmsg] = useState('')          // Mensaje de error para password cuando el campo no está lleno correctamente
 
     const [enabledButton, setEnabledButton] = useState(true)
 
@@ -56,7 +56,7 @@ function Registration() {
         checkFields()
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
         e.preventDefault();
 
         axios.post(`${API_URL}/auth/signup`, {
