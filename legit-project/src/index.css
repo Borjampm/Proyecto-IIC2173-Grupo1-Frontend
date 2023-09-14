@@ -38,7 +38,7 @@ h1 {
 
 button {
   border-radius: 20px;
-  border: 1px solid #F3F9F6;
+  border: 2px solid #F3F9F6;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -51,7 +51,7 @@ button {
 }
 button:hover {
   background-color: #B5DAC8;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   transition-duration: 0.25s;
   color: #011A0E;
 }

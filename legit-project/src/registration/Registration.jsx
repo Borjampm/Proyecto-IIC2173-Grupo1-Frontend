@@ -10,8 +10,18 @@ function Registration() {
     const [passwordClass, setPasswordClass] = useState('')
     const [passwordmsg, setPasswordmsg] = useState('')
 
+    const [enabledButton, setEnabledButton] = useState(true)
+
     const [msg, setMsg] = useState('')
 
+    const checkFields = () => {
+        if (emailClass === "field-filled" && passwordClass === "field-filled") {
+            setEnabledButton(false)
+        } else{
+            setEnabledButton(true)
+        }
+    }
+    
     const handleEmail = (e) => {
         if (e != "") {
             setEmail(e)
@@ -21,11 +31,13 @@ function Registration() {
             } else {
                 setEmailmsg("")
                 setEmailClass("field-filled")
+
             }
         } else {
             setEmail("")
             setEmailClass("")
         }
+        checkFields()
     }
 
     const handlePassword = (p) => {
@@ -42,6 +54,7 @@ function Registration() {
             setPassword("")
             setPasswordClass("")
         }
+        checkFields()
     }
 
     const handleSubmit = async(e) => {
@@ -81,7 +94,7 @@ function Registration() {
 
                 
 
-                <button type="submit" className="btn">Register</button>
+                <button type="submit" className="btn" disabled={enabledButton} >Register</button>
 
             </div>
         

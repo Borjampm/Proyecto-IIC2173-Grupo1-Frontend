@@ -21,20 +21,23 @@
     border:none;
     height: 2em;
     background-color: #F3F9F6;
-    border-bottom: 2px solid #078448;
+    border-bottom: 2px solid #07844840;
     font-size: 0.75em;
-    transition-duration: 1.5s;
+    transition-duration: 0.25s;
 }
 
 .field input:focus {
     pointer-events: none;
     outline: none;
     font-size: 0.75em;
+    border-bottom: 2px solid #078448;
+    transition-duration: 0.25s;
 }
 
 .field .field-filled{
     background-color: #B5DAC870;
-    transition-duration: 1.5s;
+    transition-duration: 0.25s;
+    border-bottom: 2px solid #078448;
 }
 
 #register-form p{
@@ -46,5 +49,16 @@
 }
 
 form button {
-    font-size: 1em;
+    font-size: 0.9em;
+    background-color: #078448;
+    transition-duration: 0.5s;
+    border: 2px solid #078448;
+    line-height: 1;
+}
+
+form button:disabled {
+    cursor: default;
+    background-color: #F3F9F6;
+    color: #8BB09E;
+    border: 2px solid #B5DAC8;;
 }
