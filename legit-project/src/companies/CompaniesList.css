@@ -1,0 +1,53 @@
+.companies-v-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;                   /* Quiero cambiar el color background del body */
+    background-color: #F3F9F6;          
+    border-radius: 40px;
+    
+}
+
+.company {
+    margin: 2em;
+    background-color: aliceblue;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    height: 10em;
+    color: #8BB09E;
+    border: 5px solid #8BB09E;
+    border-radius: 20px;
+    transition-duration: 0.4s;
+}
+
+.company h3 {
+    color: #078448;
+}
+
+.companies-v-container h1{
+    color: #078448;
+}
+
+.companies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+
+.company:hover {
+    border: 5px solid #078448;
+    transition-duration: 0.4s;
+    background-color: #07844820;
+
+}
+
+
+
+/* body {
+    background-color: #B5DAC8;
+} */

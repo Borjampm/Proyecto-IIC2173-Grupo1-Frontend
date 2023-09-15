@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react'
+import './CompaniesList.css'
 
 function CompaniesList() {
 
@@ -26,26 +27,24 @@ function CompaniesList() {
  
     return (
         <>
-            <div className="companies-list">
+            <div className="companies-v-container">
                 <p>{ msg }</p>
-                <div className="companies">
-                    { companies.map(function(company) {
-                        return(
-                            <div key={company.symbol} className="company">
-                                <Link to={`/companies/${company.symbol}`}>
-                                    <p>{ company.shortName }</p>
-                                    <p>{ company.symbol }</p>
+                <h1>Companies</h1>
+                    <div className="companies">
+                        { companies.map(function(company) {
+                            return(
+                                <Link key={company.symbol} to={`/companies/${company.symbol}`}>
+                                    <div className="company">
+                                        <p>{ company.symbol }</p>
+                                        <h3>{ company.shortName }</h3>
+                                    </div>
                                 </Link>
-                            </div>
-                        )
-                    })
-
-                    }
+                            )
+                        })}
+                    </div>
                 </div>
                 
-                
 
-            </div>
         </>
     )
 
