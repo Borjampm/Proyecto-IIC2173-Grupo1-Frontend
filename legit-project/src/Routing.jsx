@@ -11,7 +11,7 @@ function Routing() {
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/registration" element={<Registration />} />
-                <Route path="/companies" element={<CompaniesList />} />
+                <Route path="/stocks" element={<CompaniesList />} />
                 <Route path="/stocks/:companyName" element={<CompanyDetail />} />
             </Routes>
         </BrowserRouter>

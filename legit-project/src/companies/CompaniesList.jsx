@@ -5,26 +5,27 @@ import axios from 'axios'
 
 function CompaniesList() {
 
-    const API_URL = 'https://borjampm.me'    // URL de la API
+    const API_URL = 'http://localhost:8000'    // URL de la API
 
-    // const [companies, setCompanies] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
+    const [companies, setCompanies] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
 
     const [msg, setMsg] = useState("");     // Variable que almacena el mensaje de error
     
-    const companies = [                   // Este es el formato en el que se tienen que recuperar los datos de la API
-        {"shortName": "Apple Inc.", "symbol": "AAPL"},
-        {"shortName": "Microsoft Corporation", "symbol": "MSFT"},
-        {"shortName": "Amazon.com, Inc.", "symbol": "AMZN"}
-    ]
+    // const companies = [                   // Este es el formato en el que se tienen que recuperar los datos de la API
+    //     {"shortName": "Apple Inc.", "symbol": "AAPL"},
+    //     {"shortName": "Microsoft Corporation", "symbol": "MSFT"},
+    //     {"shortName": "Amazon.com, Inc.", "symbol": "AMZN"}
+    // ]
 
     useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
-        axios.get(`${API_URL}/companies-names`) 
+        axios.get(`${API_URL}/companies/all`) 
           .then((response) => {
             setCompanies(response.data);
+            console.log(response.data, "companies")
             setMsg("Empresas obtenidas correctamente");
           })
           .catch((error) => {
-            setMsg(`Error al obtener las empresas ${error.response.data.message}`)
+            setMsg(`Error al obtener las empresas ${error}`)
           });
       }, []);
 
