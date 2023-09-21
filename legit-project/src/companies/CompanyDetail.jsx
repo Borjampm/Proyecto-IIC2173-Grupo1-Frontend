@@ -12,10 +12,11 @@ function CompanyDetail() {
     console.log(companyName, "companyname")
     const [page, setPage] = useState(1);
     const [msg, setMsg] = useState("");
+    const [stocksAdded, setStocksAdded] = useState(0)
     // const location = useLocation();                                 // Este código fue proporcionado por ChatGPT para obtener query parameters
     // const searchParams = new URLSearchParams(location.search);
     const [stocks, setStocks] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
-    
+    const userId = 1
     // const stocks = [
     //     {"price": 1673,
     //     "currency": "USD",
@@ -57,10 +58,11 @@ function CompanyDetail() {
       }
       
 
-    useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
+    useEffect(() => {    
+      console.log("changing page")          // Envía los datos al backend para hacer efectivo el registro
         axios.get(`${API_URL}/stocks/${companyName}?page=${page}`) 
           .then((response) => {
-            console.log(response.data, "response.data")
+            console.log(response.data, "response.data page")
             setStocks(response.data.history);
             setMsg("Información obtenida correctamente");
           })
@@ -68,13 +70,45 @@ function CompanyDetail() {
             console.log("error", error)
             setMsg(`Error al obtener la información de las empresas ${error.response.data.message}`)
           });
-      }, []);
+    }, [page]);
+
+    const buyStock = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
+      e.preventDefault();
+
+      axios.post(`${API_URL}/user/buy-stocks`, {
+          user: userId,
+          quantity: stocksAdded,
+          symbol: companyName
+      }).then((response) => {
+          setMsg("Compradas, ve el estado de tus compras aqui")
+      }).catch((error) => {
+          setMsg("Error al comprar stocks")
+      })
+  }
+
  
     return (
         <>
         <div>
             <h1>Información de { companyName }</h1>
-            <button onClick={() => butStock()}>Buy</button>
+            <form id="buy-stock" className="form" onSubmit={buyStock}>
+
+              <div className="field">
+                  <label htmlFor="number">Cantidad de acciones</label>
+                  <input type="number" name="number" id="number" value={stocksAdded} onChange={e => setStocksAdded(e.target.value)} required />
+              </div>
+              <button type="submit" className="btn" >Buy Stocks</button>
+            </form>
+
+            <form id="change-page" className="form">
+
+              <div className="field">
+                  <label htmlFor="number">Page</label>
+                  <input type="number" name="page" id="page" value={page} onChange={e => setPage(e.target.value)} required />
+              </div>
+            </form>
+
+
             { stocks ? (stocks.map(function(stock, i) {
                 // const stock_info = getDateComponents(stock.datetime)
                 console.log(stock, "stock_info")
