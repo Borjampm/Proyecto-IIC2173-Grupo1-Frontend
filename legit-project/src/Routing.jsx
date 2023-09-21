@@ -4,6 +4,8 @@ import Registration from './registration/Registration'
 import MyProfile from './user/MyProfile'
 import MyStocks from './user/MyStocks'
 import LogIn from './user/LogIn';
+import CompaniesList from './companies/CompaniesList';
+import CompanyDetail from './companies/CompanyDetail';
 
 function Routing() {
     return (
@@ -15,6 +17,9 @@ function Routing() {
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/my-stocks" element={<MyStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
+                <Route path="/registration" element={<Registration />} />
+                <Route path="/stocks" element={<CompaniesList />} />
+                <Route path="/stocks/:companyName" element={<CompanyDetail />} />
             </Routes>
         </BrowserRouter>
         </>

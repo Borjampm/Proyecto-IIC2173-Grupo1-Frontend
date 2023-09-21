@@ -14,6 +14,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       redirectUri={window.location.origin+ "/my-profile/"}
     >
     <Navbar />
+  <>
+    {/* <Navbar /> */}
     <Routing />
     </Auth0Provider>
 
