@@ -26,9 +26,12 @@ function MyStocks() {
     return (
         <>
             <h1>My Stocks</h1>
-            { userStocks ? (
-                            <p>userStocks</p>
-                           ) : (
+            { userStocks ? (userStocks.map(function(stock, i) {
+                // const stock_info = getDateComponents(stock.datetime)
+                            return(
+                                <p>{stock.id}</p>
+                            )
+                        })) : (
                                 <p>Loading stocks...</p>
                             )
                         }

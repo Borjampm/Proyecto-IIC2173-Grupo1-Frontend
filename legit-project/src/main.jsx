@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom/client'
 import Routing from './Routing'
 import Navbar from './common/Navbar'
 import './index.css'
+import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <>
+
+
+<Auth0Provider
+      domain="dev-ju2sb7gpzdrwv31f.us.auth0.com"
+      clientId="Ss50jxHUP31QbXzYJHn2NHOiDP5CFrOP"
+      redirectUri={window.location.origin+ "/my-profile/"}
+    >
     <Navbar />
     <Routing />
-  </>
+    </Auth0Provider>
+
+
 )

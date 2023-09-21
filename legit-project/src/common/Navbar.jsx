@@ -12,12 +12,12 @@ function Navbar() {
 
                     <div className="right">
                         <div className="dropdown">
-                            <NavbarItem text={"Mi Sesión"} className={"dropbtn"} />
-                            <div className="dropdown-content">
+                            <NavbarItem text={"Mi Sesión"} className={"dropbtn"} link={"/my-profile"}  />
+                            {/* <div className="dropdown-content">
                                 {
                                     <NavbarItem text={"Registrarse"} link={"/registration"} />
                                 }
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </ul>
