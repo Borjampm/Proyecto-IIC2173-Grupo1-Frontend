@@ -55,6 +55,8 @@ function MyProfile() {
         setMoneyAdded(p)
     }
 
+    
+
 
  
     return (
@@ -74,7 +76,10 @@ function MyProfile() {
                                     </div>
                                     <button type="submit">Add Money</button>
                                 </form>
-                                <button onClick={() => myStocks()} className="btn">See my stocks</button>
+                                <Link to="/my-stocks">
+                                    <button className="btn">See my stocks
+                                    </button>
+                                </Link>
                             </div>
                            ) : (
                                 <p>Loading user information...</p>
