@@ -75,7 +75,7 @@ function CompanyDetail() {
     const buyStock = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
       e.preventDefault();
 
-      axios.post(`${API_URL}/user/buy-stocks`, {
+      axios.post(`${API_URL}/transactions/buy`, {
           user: userId,
           quantity: stocksAdded,
           symbol: companyName

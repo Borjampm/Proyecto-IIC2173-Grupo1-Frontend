@@ -17,7 +17,7 @@ function Routing() {
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/my-stocks" element={<MyStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
-                <Route path="/registration" element={<Registration />} />
+                {/* <Route path="/registration" element={<Registration />} /> */}
                 <Route path="/stocks" element={<CompaniesList />} />
                 <Route path="/stocks/:companyName" element={<CompanyDetail />} />
             </Routes>
