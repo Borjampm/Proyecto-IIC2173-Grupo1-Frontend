@@ -70,6 +70,10 @@ function MyProfile() {
             setMoneyAdded(0)
         }
     }
+
+    if (isAuthenticated) {
+        
+    }
     
 
     
