@@ -33,14 +33,13 @@ function MyProfile() {
     //   }
 
     const handleMoney = async(e) => {
-            
         axios.post(`${API_URL}/users/add-money`, {
-            userId: userId,
-            amount: moneyAdded
+            user: user.sub,
+            quantity: moneyAdded,
         }).then((response) => {
-            setMsg("Money added correctly")
+            setMsg("Dinero agregado correctamente")
         }).catch((error) => {
-            setMsg("Error adding money")
+            setMsg("Error al agregar dinero")
         })
     }
 
@@ -61,6 +60,11 @@ function MyProfile() {
 
     const handleMoneyAmount = (p) => {     // Revisa que la contraseña tenga al menos 8 caracteres
         if (p >= 0) {
+            if (user) {
+                console.log(user, "useer")
+                const moneyBalance = user.custom_metadata.money;
+                console.log(moneyBalance, "useer")
+            }
             setMoneyAdded(p)
         } else {
             setMoneyAdded(0)
