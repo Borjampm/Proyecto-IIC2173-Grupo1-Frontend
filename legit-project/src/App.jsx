@@ -15,7 +15,7 @@ function App() {
         {/* <h2 className="welcome-email"></h2> */}
       </>
     ): (
-      <h2 className="welcome">Welcome</h2>)}
+      <h2 className="welcome">Welcome to</h2>)}
       <h1>Legit Bussines</h1>
       <Link to="/stocks">
         <button className="btn">Get started</button>
