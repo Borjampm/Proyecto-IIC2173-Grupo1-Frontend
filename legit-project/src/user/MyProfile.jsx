@@ -73,6 +73,11 @@ function MyProfile() {
 
     const handleMoneyAmount = (p) => {     // Revisa que la contraseña tenga al menos 8 caracteres
         if (p >= 0) {
+            if (user) {
+                console.log(user, "useer")
+                const moneyBalance = user.custom_metadata.money;
+                console.log(moneyBalance, "useer")
+            }
             setMoneyAdded(p)
         } else {
             setMoneyAdded(0)

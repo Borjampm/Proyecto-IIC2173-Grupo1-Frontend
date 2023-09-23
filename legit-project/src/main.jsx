@@ -8,14 +8,16 @@ import { Auth0Provider } from '@auth0/auth0-react';
 ReactDOM.createRoot(document.getElementById('root')).render(
 
 
-<Auth0Provider
+  <Auth0Provider
       domain="dev-ju2sb7gpzdrwv31f.us.auth0.com"
       clientId="Ss50jxHUP31QbXzYJHn2NHOiDP5CFrOP"
-      redirectUri={window.location.origin+ "/my-profile/"}
+      redirectUri={"http://localhost:5173/my-profile/"}
+      scope="openid profile email logins_count"
     >
-    <Navbar />
-    {/* <Navbar /> */}
-    <Routing />
+      <Navbar />
+      {/* <Navbar /> */}
+      <Routing />
+
     </Auth0Provider>
 
 

@@ -77,6 +77,7 @@ function CompanyDetail() {
 
     const buyStock = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
       e.preventDefault();
+      
       console.log(user, "user")
       console.log(context, "context")
       console.log("companynameee", companyName)
