@@ -8,6 +8,7 @@ function MyStocks() {
     const API_URL = 'http://localhost:8000'    // URL de la API
     const { user, isAuthenticated } = useAuth0();
     const [userStocks, setUserStocks] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
+    const [msg, setMsg] = useState("")
     // const userId =n 1
 
     useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
@@ -25,7 +26,7 @@ function MyStocks() {
             });
         }
     
-      }, []);
+      }, [user]);
     
  
     return (
@@ -33,8 +34,11 @@ function MyStocks() {
             <h1>My Stocks</h1>
             { userStocks ? (userStocks.map(function(stock, i) {
                 // const stock_info = getDateComponents(stock.datetime)
+                console.log(stock)
                             return(
-                                <p>{stock.id}</p>
+                    
+                                    <p key={i}>Company: {stock.CompanyId} | Quantity: {stock.Quantity} | Price: {stock.Price} | Completed: {stock.Completed ? "true" : "false"}</p>
+                            
                             )
                         })) : (
                                 <p>Loading stocks...</p>

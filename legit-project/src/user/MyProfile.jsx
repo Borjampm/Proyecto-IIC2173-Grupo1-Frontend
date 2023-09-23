@@ -88,7 +88,7 @@ function MyProfile() {
         console.log("hiii")
         axios.post(`${API_URL}/users/addfunds`, {
             Username: user.sub,
-            Funds: 1000
+            Funds: moneyAdded
         }).then((response) => {
             setMsg("Money added correctly")
         }).catch((error) => {
@@ -111,7 +111,7 @@ function MyProfile() {
                         { user ? (
                             <div className="user-information">
                                 <p>Username: {user.sub}</p>
-                                <p>Password: {user.email}</p>
+                                <p>Email: {user.email}</p>
                                 {/* <p>Money: {userInformation.money}</p> */}
                                 <form id="register-form" className="form" onSubmit={handleMoney}>
                                     <button type="submit">Add to db</button>
