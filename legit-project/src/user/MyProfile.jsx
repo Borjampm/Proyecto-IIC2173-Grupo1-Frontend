@@ -33,15 +33,27 @@ function MyProfile() {
     //   }
 
     const handleMoney = async(e) => {
-            
-        axios.post(`${API_URL}/users/add-money`, {
-            userId: userId,
-            amount: moneyAdded
+        console.log("signing up")
+        axios.post(`${API_URL}/users/signup`, {
+            Username: user.sub,
+            Mail: user.email,
+            Wallet: 0
         }).then((response) => {
+            console.log(response)
             setMsg("Money added correctly")
         }).catch((error) => {
+            console.log(error)
             setMsg("Error adding money")
         })
+            
+        // axios.post(`${API_URL}/users/add-money`, {
+        //     userId: userId,
+        //     amount: moneyAdded
+        // }).then((response) => {
+        //     setMsg("Money added correctly")
+        // }).catch((error) => {
+        //     setMsg("Error adding money")
+        // })
     }
 
     useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
@@ -66,6 +78,19 @@ function MyProfile() {
             setMoneyAdded(0)
         }
     }
+
+    const handleDB = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
+        console.log("hiii")
+        axios.post(`${API_URL}/users/addfunds`, {
+            Username: user.sub,
+            Funds: 1000
+        }).then((response) => {
+            setMsg("Money added correctly")
+        }).catch((error) => {
+            console.log(error)
+            setMsg("Error adding money")
+        })
+    }
     
 
     
@@ -84,11 +109,15 @@ function MyProfile() {
                                 <p>Password: {user.email}</p>
                                 {/* <p>Money: {userInformation.money}</p> */}
                                 <form id="register-form" className="form" onSubmit={handleMoney}>
+                                    <button type="submit">Add to db</button>
+                                </form>
+                                
+                                <form id="db" className="form" onSubmit={handleDB}>
                                     <div className="field">
                                         <label htmlFor="money">Amount</label>
                                         <input type="number" name="money" id="money" value={moneyAdded} onChange={m => handleMoneyAmount(m.target.value)} required />
                                     </div>
-                                    <button type="submit">Add Money</button>
+                                    <button type="submit">Add to money</button>
                                 </form>
                                 <Link to="/my-stocks">
                                     <button className="btn">See my stocks

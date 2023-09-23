@@ -2,21 +2,24 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams, useLocation, Link } from 'react-router-dom';
 import './CompanyDetail.css'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 function CompanyDetail() {
 
     const API_URL= 'http://localhost:8000'
+    const { user, isAuthenticated, context } = useAuth0();
 
     const { companyName } = useParams();
     console.log(companyName, "companyname")
     const [page, setPage] = useState(1);
     const [msg, setMsg] = useState("");
     const [stocksAdded, setStocksAdded] = useState(0)
+    
     // const location = useLocation();                                 // Este código fue proporcionado por ChatGPT para obtener query parameters
     // const searchParams = new URLSearchParams(location.search);
     const [stocks, setStocks] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
-    const userId = 1
+    // const userId = 1
     // const stocks = [
     //     {"price": 1673,
     //     "currency": "USD",
@@ -74,11 +77,16 @@ function CompanyDetail() {
 
     const buyStock = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
       e.preventDefault();
+      console.log(user, "user")
+      console.log(context, "context")
+      console.log("companynameee", companyName)
 
-      axios.post(`${API_URL}/user/buy-stocks`, {
-          user: userId,
-          quantity: stocksAdded,
-          symbol: companyName
+      axios.post(`${API_URL}/transactions/buy`, {
+          Username: user.sub,
+          Quantity: stocksAdded,
+          Symbol: companyName,
+          IPAddres: user.custom_metadata.ip_adress,
+          Price: 10
       }).then((response) => {
           setMsg("Compradas, ve el estado de tus compras aqui")
       }).catch((error) => {
@@ -111,9 +119,9 @@ function CompanyDetail() {
 
             { stocks ? (stocks.map(function(stock, i) {
                 // const stock_info = getDateComponents(stock.datetime)
-                console.log(stock, "stock_info")
+                // console.log(stock, "stock_info")
                 const dateComponents = getDateComponents(stock.datetime)
-                console.log(dateComponents, "dateComponents")
+                // console.log(dateComponents, "dateComponents")
                             return(
                                 <div key={i} className="stock">
                                     <p>{dateComponents[2][1]} {dateComponents[2][0]} {dateComponents[1][1]} {dateComponents[0]}</p>
