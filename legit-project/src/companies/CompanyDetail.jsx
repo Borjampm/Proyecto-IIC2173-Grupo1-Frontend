@@ -14,7 +14,7 @@ function CompanyDetail() {
     console.log(companyName, "companyname")
     const [page, setPage] = useState(1);
     const [msg, setMsg] = useState("");
-    const [stocksAdded, setStocksAdded] = useState(0)
+    const [stocksAdded, setStocksAdded] = useState(1)
     
     // const location = useLocation();                                 // Este código fue proporcionado por ChatGPT para obtener query parameters
     // const searchParams = new URLSearchParams(location.search);
@@ -94,7 +94,14 @@ function CompanyDetail() {
       }).catch((error) => {
           setMsg("Error al comprar stocks")
       })
-  }
+      }
+      function handleStocksAdded(e) {
+        if (e >= 1) {
+            setStocksAdded(e)
+        }
+
+      }
+
 
  
     return (
@@ -105,9 +112,11 @@ function CompanyDetail() {
 
               <div className="field">
                   <label htmlFor="number">Cantidad de acciones</label>
-                  <input type="number" name="number" id="number" value={stocksAdded} onChange={e => setStocksAdded(e.target.value)} required />
+                  <input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required />
               </div>
-              <button type="submit" className="btn" >Buy Stocks</button>
+              {/* <Link to="/my-stocks"> */}
+                <button type="submit" className="btn" >Buy Stocks</button>
+              {/* </Link> */}
             </form>
 
             <form id="change-page" className="form">

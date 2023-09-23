@@ -1,0 +1,12 @@
+.welcome {
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+.welcome-email {
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}

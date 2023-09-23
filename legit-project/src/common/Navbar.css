@@ -5,11 +5,11 @@ ul li {float: none;}
 
 ul {
 list-style-type: none;
-width: 100% !important;
+width: 100vw;
 margin: 0;
 padding: 0;
-background-color: #000;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+background-color: transparent;
+/* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8); */
 overflow: hidden;
 }
 
@@ -51,7 +51,7 @@ padding: 14px 16px;
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-background-color: rgba(6, 92, 230, 0.842);
+/* background-color: rgba(6, 92, 230, 0.842); */
 text-decoration-color: #fff;
 transition: 0.5s;
 }
@@ -73,4 +73,16 @@ transition: 0.5s;
 
 .right{
 float: right;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;    
+
+}
+
+.auth-btn {
+    margin: 0.5em;
 }

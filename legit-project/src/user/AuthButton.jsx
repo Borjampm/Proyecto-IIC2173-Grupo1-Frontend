@@ -4,7 +4,7 @@ const AuthButton = () => {
     const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   
     return (
-      <div>
+      <div className='auth-btn'>
         {isAuthenticated ? (
           <button onClick={() => logout()}>Log Out</button>
         ) : (
