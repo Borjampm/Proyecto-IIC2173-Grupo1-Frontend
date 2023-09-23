@@ -79,12 +79,14 @@ function CompanyDetail() {
       e.preventDefault();
       console.log(user, "user")
       console.log(context, "context")
+      console.log("companynameee", companyName)
 
       axios.post(`${API_URL}/transactions/buy`, {
-          user: user.sub,
-          quantity: stocksAdded,
-          symbol: companyName,
-          IPAddres: user.custom_metadata.ip_adress
+          Username: user.sub,
+          Quantity: stocksAdded,
+          Symbol: companyName,
+          IPAddres: user.custom_metadata.ip_adress,
+          Price: 10
       }).then((response) => {
           setMsg("Compradas, ve el estado de tus compras aqui")
       }).catch((error) => {
@@ -117,9 +119,9 @@ function CompanyDetail() {
 
             { stocks ? (stocks.map(function(stock, i) {
                 // const stock_info = getDateComponents(stock.datetime)
-                console.log(stock, "stock_info")
+                // console.log(stock, "stock_info")
                 const dateComponents = getDateComponents(stock.datetime)
-                console.log(dateComponents, "dateComponents")
+                // console.log(dateComponents, "dateComponents")
                             return(
                                 <div key={i} className="stock">
                                     <p>{dateComponents[2][1]} {dateComponents[2][0]} {dateComponents[1][1]} {dateComponents[0]}</p>
