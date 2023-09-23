@@ -15,7 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       scope="openid profile email logins_count"
     >
       <Navbar />
-      {/* <Navbar /> */}
       <Routing />
 
     </Auth0Provider>

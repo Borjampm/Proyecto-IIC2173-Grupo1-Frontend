@@ -75,8 +75,8 @@ function MyProfile() {
         if (p >= 0) {
             if (user) {
                 console.log(user, "useer")
-                const moneyBalance = user.custom_metadata.money;
-                console.log(moneyBalance, "useer")
+                const moneyBalance = p;
+                console.log(moneyBalance, "useeEEr")
             }
             setMoneyAdded(p)
         } else {
@@ -113,17 +113,17 @@ function MyProfile() {
                                 <p>Username: {user.sub}</p>
                                 <p>Email: {user.email}</p>
                                 {/* <p>Money: {userInformation.money}</p> */}
-                                <form id="register-form" className="form" onSubmit={handleMoney}>
-                                    <button type="submit">Add to db</button>
-                                </form>
+                                {/* <form id="register-form" className="form" onSubmit={handleMoney}> */}
+                                    <button onClick={() => handleMoney()} type="submit">Add to db</button>
+                                {/* </form> */}
                                 
-                                <form id="db" className="form" onSubmit={handleDB}>
+                                {/* <form id="db" className="form" onSubmit={handleDB}>
                                     <div className="field">
-                                        <label htmlFor="money">Amount</label>
+                                        <label htmlFor="money">Amount</label> */}
                                         <input type="number" name="money" id="money" value={moneyAdded} onChange={m => handleMoneyAmount(m.target.value)} required />
-                                    </div>
-                                    <button type="submit">Add to money</button>
-                                </form>
+                                    {/* </div> */}
+                                    <button onClick={() => handleDB()} type="submit">Add to money</button>
+                                {/* </form> */}
                                 <Link to="/my-stocks">
                                     <button className="btn">See my stocks
                                     </button>
