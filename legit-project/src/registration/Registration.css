@@ -43,14 +43,14 @@
 #register-form p{
     font-size: 0.75em;
     margin: 0px;
-    color: #040317;
+    color: #0F0121;
     font-weight: 200;
     height: 0.75em;
 }
 
 form button {
     font-size: 0.9em;
-    background-color: #F3F3F8;
+    background-color: #0F0121;
     transition-duration: 0.5s;
     border: 2px solid #F3F3F8;
     line-height: 1;

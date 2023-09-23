@@ -23,14 +23,14 @@
     border-radius: 20px;
     transition-duration: 0.4s;
     /* box-shadow: #010014 0px 19px 38px; */
-    box-shadow: #010014 0px 19px 38px, #04031730 0px -30px 60px -12px inset;
+    box-shadow: #010014 0px 19px 38px, #0F012130 0px -30px 60px -12px inset;
     /* box-shadow: #01001430 0px 19px 38px, #01001422 0px 15px 12px; */
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 
 .company:hover {
     border-radius: 20px;
-    box-shadow: #010014 0px 19px 38px, rgba(255, 255, 255, 0.59) 30px 30px 36px -18px inset, #04031730 0px -30px 60px -12px inset;
+    box-shadow: #010014 0px 19px 38px, rgba(255, 255, 255, 0.59) 30px 30px 36px -18px inset, #0F012130 0px -30px 60px -12px inset;
     /* border: 5px solid #b8b6d600; */
     /* box-shadow: rgba(229, 229, 255, 0.25) 0px 30px 60px -12px inset, rgba(214, 186, 186, 0.3) 0px 18px 36px -18px inset; */
 }
