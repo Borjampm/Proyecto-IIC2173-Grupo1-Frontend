@@ -79,15 +79,16 @@ function CompanyDetail() {
       e.preventDefault();
       
       console.log(user, "user")
-      console.log(context, "context")
-      console.log("companynameee", companyName)
+      console.log(stocks, "all stocks")
+      console.log("stocks", stocks.slice(-1))
+      console.log(stocks.slice(-1)[0].price, "slicer")
 
       axios.post(`${API_URL}/transactions/buy`, {
           Username: user.sub,
           Quantity: stocksAdded,
           Symbol: companyName,
           IPAddres: user.custom_metadata.ip_adress,
-          Price: 10
+          Price: stocks.slice(-1)[0].price
       }).then((response) => {
           setMsg("Compradas, ve el estado de tus compras aqui")
       }).catch((error) => {
