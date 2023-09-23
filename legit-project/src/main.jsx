@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Navbar />
       {/* <Navbar /> */}
       <Routing />
+
     </Auth0Provider>
 
 
