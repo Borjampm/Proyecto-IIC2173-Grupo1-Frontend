@@ -3,31 +3,52 @@
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;                   /* Quiero cambiar el color background del body */
-    background-color: #F3F9F6;          
+    /* background-color: #F3F3F8;           */
+    background-color: transparent;
     border-radius: 40px;
+    margin-top: 5em;
     
 }
 
 .company {
     margin: 2em;
-    background-color: aliceblue;
+    background-color: #F3F3F8;
     padding: 2em;
     display: flex;
     flex-direction: column;
     width: 10em;
     height: 10em;
-    color: #8BB09E;
-    border: 5px solid #8BB09E;
+    color: #8F8DAC;
+    /* border: 5px solid #B8B6D6; */
     border-radius: 20px;
     transition-duration: 0.4s;
+    /* box-shadow: #010014 0px 19px 38px; */
+    box-shadow: #010014 0px 19px 38px, #0F012130 0px -30px 60px -12px inset;
+    /* box-shadow: #01001430 0px 19px 38px, #01001422 0px 15px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+.company:hover {
+    border-radius: 20px;
+    box-shadow: #010014 0px 19px 38px, rgba(255, 255, 255, 0.59) 30px 30px 36px -18px inset, #0F012130 0px -30px 60px -12px inset;
+    /* border: 5px solid #b8b6d600; */
+    /* box-shadow: rgba(229, 229, 255, 0.25) 0px 30px 60px -12px inset, rgba(214, 186, 186, 0.3) 0px 18px 36px -18px inset; */
 }
 
 .company h3 {
-    color: #078448;
+    color: #140D75;
 }
 
+/* .company p {
+    color: #F3F3F8;
+} */
+
+/* .companies-v-container h1 {
+    color: #EA0B4E;
+} */
+
 .companies-v-container h1{
-    color: #078448;
+    color: #EA0B4E;
 }
 
 .companies {
@@ -39,15 +60,25 @@
 
 
 
-.company:hover {
-    border: 5px solid #078448;
+.companies-v-container .company:hover {
+    /* border: 5px solid #EA0B4E; */
     transition-duration: 0.4s;
-    background-color: #07844820;
+    background-color: #B8B6D6;
+    /* background-color: #EA0B4E; */
+    /* color: #F3F3F8; */
 
 }
 
+/* .company h3:hover {
+    color: #F3F3F8;
+} */
+
+/* 
+.company p {
+    color: #B8B6D6;
+} */
 
 
 /* body {
-    background-color: #B5DAC8;
+    background-color: #B4B3BE;
 } */

@@ -14,7 +14,9 @@ function CompanyDetail() {
     console.log(companyName, "companyname")
     const [page, setPage] = useState(1);
     const [msg, setMsg] = useState("");
-    const [stocksAdded, setStocksAdded] = useState(0)
+    const [buymsg, setBuymsg] = useState("");
+    const [stocksAdded, setStocksAdded] = useState(1)
+    const [shouldRedirect, setShouldRedirect] = useState(false);
     
     // const location = useLocation();                                 // Este código fue proporcionado por ChatGPT para obtener query parameters
     // const searchParams = new URLSearchParams(location.search);
@@ -90,31 +92,55 @@ function CompanyDetail() {
           IPAddres: user.custom_metadata.ip_adress,
           Price: stocks.slice(-1)[0].price
       }).then((response) => {
+        // history.push("/my-stocks")
+          window.location.href = '/my-stocks';
           setMsg("Compradas, ve el estado de tus compras aqui")
       }).catch((error) => {
-          setMsg("Error al comprar stocks")
+        setBuymsg("Error al comprar stocks")
       })
-  }
+      }
+      function handleStocksAdded(e) {
+        if (e >= 1) {
+            setStocksAdded(e)
+        }
+
+      }
+      function handlePage(e) {
+        if (e >= 1) {
+            setPage(e)
+        }
+      }
+
 
  
     return (
         <>
-        <div>
-            <h1>Información de { companyName }</h1>
-            <form id="buy-stock" className="form" onSubmit={buyStock}>
+        <div className='company-detail'>
+            <h1>{ companyName }</h1>
+            <h2>Actual price ${ stocks ? stocks.slice(-1)[0].price : null }</h2>
+            
+            {user ? (<>
+                          <form id="buy-stock" className="form" onSubmit={buyStock}>
 
-              <div className="field">
-                  <label htmlFor="number">Cantidad de acciones</label>
-                  <input type="number" name="number" id="number" value={stocksAdded} onChange={e => setStocksAdded(e.target.value)} required />
-              </div>
-              <button type="submit" className="btn" >Buy Stocks</button>
-            </form>
+                          <div className="field">
+                              <label htmlFor="number">Select the number of stocks</label>
+                              
+                              <input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required />
+                          </div>
+                          {/* <Link to="/my-stocks"> */}
+                            <button type="submit" className="btn" >Buy Stocks</button>
+                          {/* </Link> */}
+                        </form>
+                        <p>{buymsg}</p>
+                        </>
+            ): <p>¡Login to buy stocks!</p> }
+            <br/>
 
             <form id="change-page" className="form">
 
               <div className="field">
                   <label htmlFor="number">Page</label>
-                  <input type="number" name="page" id="page" value={page} onChange={e => setPage(e.target.value)} required />
+                  <input type="number" name="page" id="page" value={page} onChange={e => handlePage(e.target.value)} required />
               </div>
             </form>
 

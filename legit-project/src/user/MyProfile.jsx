@@ -14,7 +14,7 @@ function MyProfile() {
 
     const [msg, setMsg] = useState("");     // Variable que almacena el mensaje de error
     const [moneyAdded, setMoneyAdded] = useState(0); 
-
+    const [user2, setUser2] = useState(null)
     // const companies = [                   // Este es el formato en el que se tienen que recuperar los datos de la API
     //     {"shortName": "Apple Inc.", "symbol": "AAPL"},
     //     {"shortName": "Microsoft Corporation", "symbol": "MSFT"},
@@ -57,19 +57,25 @@ function MyProfile() {
     }
 
     useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
+        
+        
         if (user) {
         axios.get(`${API_URL}/users/${user.sub}`) 
           .then((response) => {
             setUserInformation(response.data);
             console.log(response.data, "user information")
+            setUser2(response.data.stocks_data)
             setMsg("Información de usuario obtenida correctamente");
           })
           .catch((error) => {
+            console.log(error)
             setMsg(`Error al obtener información de usuario${error}`)
           });
         }
+
+
     
-      }, []);
+      }, [user]);
 
     const handleMoneyAmount = (p) => {     // Revisa que la contraseña tenga al menos 8 caracteres
         if (p >= 0) {
@@ -105,29 +111,56 @@ function MyProfile() {
     return (
         <>
             <div className="user-container">
-                <p>{ msg }</p>
-                <AuthButton />
+                {/* <p>{ msg }</p> */}
+                {/* <AuthButton /> */}
                 {/* <h1>User {userId}</h1> */}
                         { user ? (
                             <div className="user-information">
-                                <p>Username: {user.sub}</p>
-                                <p>Email: {user.email}</p>
+                                <h1 className="welcome">Welcome</h1>
+                                <h1 className="welcome-email">{user.email}</h1>
+                                {/* <p>Username: {user.sub}</p> */}
+                                {/* <p>Email: {user.email}</p> */}
                                 {/* <p>Money: {userInformation.money}</p> */}
                                 {/* <form id="register-form" className="form" onSubmit={handleMoney}> */}
-                                    <button onClick={() => handleMoney()} type="submit">Add to db</button>
+                                { user2 ? (
+                                    <>
+                                    <Link to="/my-stocks">
+                                        <button className="btn">See my stocks
+                                        </button>
+                                    </Link>
+                                    <p>Money: ${user2.Wallet}</p>
+                                    </>
+                                ) : (
+                                    <>                                   
+                                     <Link to="/">
+                                        <button onClick={() => handleMoney()} type="submit">Complete you registration</button>
+                                    </Link >
+
+                                    </>
+                                    )
+
+
+                                    
+                                }   
                                 {/* </form> */}
                                 
                                 {/* <form id="db" className="form" onSubmit={handleDB}>
                                     <div className="field">
                                         <label htmlFor="money">Amount</label> */}
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <p>Add the amount of money you want</p>
                                         <input type="number" name="money" id="money" value={moneyAdded} onChange={m => handleMoneyAmount(m.target.value)} required />
                                     {/* </div> */}
-                                    <button onClick={() => handleDB()} type="submit">Add to money</button>
+                                    <br/>
+                                    <br/>
+
+            
+                                    <button onClick={() => handleDB()}>Add to money</button>
                                 {/* </form> */}
-                                <Link to="/my-stocks">
-                                    <button className="btn">See my stocks
-                                    </button>
-                                </Link>
+
                             </div>
                            ) : (
                                 <p>Loading user information...</p>
