@@ -17,7 +17,7 @@ function Routing() {
                 <Route path="/my-stocks" element={<MyStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/companies" element={<CompaniesList />} />
-                <Route path="/companies/:companyName" element={<CompanyDetail />} />
+                <Route path="/companies/:companySymbol" element={<CompanyDetail />} />
             </Routes>
         </BrowserRouter>
         </>

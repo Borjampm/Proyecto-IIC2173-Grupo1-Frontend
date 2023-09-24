@@ -8,6 +8,23 @@
     width: 50vw;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form input {
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.field {
+    padding: 1em;
+}
+
 form label {
     font-weight: 300;
 }
