@@ -36,7 +36,7 @@ function Navbar() {
             <nav>
                 <ul>
                     <NavbarItem text={"Home"} link={"/"}/>
-                    <NavbarItem text={"Companies"} link={"/stocks"}/>
+                    <NavbarItem text={"Companies"} link={"/companies"}/>
                     {/* <NavbarItem text={"Nosotros"} link={"/"} />   */}
 
                     <div className="right">
