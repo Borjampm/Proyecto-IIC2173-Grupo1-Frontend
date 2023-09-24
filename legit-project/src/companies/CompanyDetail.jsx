@@ -124,7 +124,7 @@ function CompanyDetail() {
 
         {
           apiResponse ? (
-            apiResponse === [] ? (
+            apiResponse == [] ? (
               <></>
             ) : (
               apiResponse.map(function(stock, i) {
