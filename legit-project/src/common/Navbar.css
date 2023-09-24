@@ -56,13 +56,13 @@ text-decoration-color: #fff;
 transition: 0.5s;
 }
 
+/*
 .logonav a {
     display: block;
     margin: 0;
     padding: 0;
 }
 
-/*
 .logonav img {
     height: 30px;
     width: 30px;

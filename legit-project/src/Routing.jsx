@@ -13,13 +13,11 @@ function Routing() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
-                {/* <Route path="/registration" element={<Registration />} /> */}
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/my-stocks" element={<MyStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
-                {/* <Route path="/registration" element={<Registration />} /> */}
-                <Route path="/stocks" element={<CompaniesList />} />
-                <Route path="/stocks/:companyName" element={<CompanyDetail />} />
+                <Route path="/companies" element={<CompaniesList />} />
+                <Route path="/companies/:companyName" element={<CompanyDetail />} />
             </Routes>
         </BrowserRouter>
         </>
