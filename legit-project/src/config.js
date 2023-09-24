@@ -1,6 +1,6 @@
 //const FRONT_PROXY = import.meta.env.PROXY;
-const FRONT_PROXY = "http://localhost:5173";
-const API_URL = "http://localhost:8000";
+const FRONT_PROXY = "https://borjampm.me/";
+const API_URL = "http://iic2173-cristobalcuneo.me";
 
 //Auth0 Config Params
 const DOMAIN = "dev-ju2sb7gpzdrwv31f.us.auth0.com";
