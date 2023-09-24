@@ -17,7 +17,7 @@ function MyStocks() {
             axios.get(`${API_URL}/transactions/${user.sub}`) 
             .then((response) => {
                 setUserStocks(response.data.stocks_data);
-                console.log(response.data, "user information")
+                console.log(response.data.stocks_data, "user information")
                 setMsg("Información de stocks obtenida correctamente");
             })
             .catch((error) => {
@@ -31,19 +31,27 @@ function MyStocks() {
  
     return (
         <>
-            <h1>My Stocks</h1>
-            { userStocks ? (userStocks.map(function(stock, i) {
-                // const stock_info = getDateComponents(stock.datetime)
-                console.log(stock)
-                            return(
-                    
-                                    <p key={i}>Company: {stock.CompanyId} | Quantity: {stock.Quantity} | Price: {stock.Price} | Completed: {stock.Completed ? "true" : "false"}</p>
-                            
-                            )
-                        })) : (
-                                <p>Loading stocks...</p>
-                            )
-                        }
+        <h1>My Stocks</h1>
+        {userStocks ? (
+        userStocks.length > 0 ? (
+            userStocks.map(function (stock, i) {
+            console.log(stock);
+            return (
+                <p key={i}>
+                Company: {stock.CompanyId} | Quantity: {stock.Quantity} | Price: {stock.Price} | Completed: {stock.Completed ? "true" : "false"}
+                </p>
+            );
+            })
+        ) : (
+            <Link to="/stocks">
+                <button>Buy your first stock</button>
+            </Link >
+        )
+        ) : (
+        <p>Loading stocks...</p>
+        )}
+
+
         </>
     )
 

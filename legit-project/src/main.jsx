@@ -8,10 +8,10 @@ import { DOMAIN, CLIENT_ID, REDIRECT_URI, SCOPE } from './config'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Auth0Provider
-    domain="dev-ju2sb7gpzdrwv31f.us.auth0.com"
-    clientId="Ss50jxHUP31QbXzYJHn2NHOiDP5CFrOP"
-    redirectUri={"http://localhost:5173/my-profile/"}
-    scope="openid profile email logins_count"
+    domain={DOMAIN}
+    clientId={CLIENT_ID}
+    redirectUri={REDIRECT_URI}
+    scope={SCOPE}
   >
     <Navbar />
     <Routing />

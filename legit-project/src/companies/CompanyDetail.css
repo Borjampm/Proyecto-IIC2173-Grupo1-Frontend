@@ -1,3 +1,18 @@
 .stock {
-    background-color: aliceblue;
+    background-color: #F3F3F8;
+    color: #140D75;
+}
+
+.company-detail {
+    margin-top: 5em;
+    width: 50vw;
+}
+
+form label {
+    font-weight: 300;
+}
+
+.company-detail h2 {
+    font-size: 30px;
+    font-weight: 200;
 }

@@ -2,6 +2,7 @@ import NavbarItem from "./NavbarItem";
 import { useState, useEffect } from 'react'
 import './Navbar.css'
 import { useAuth0 } from '@auth0/auth0-react';
+import AuthButton from "./../user/AuthButton";
 
 function Navbar() {
     const { user, getIdTokenClaims, isLoading, error } = useAuth0();
@@ -39,6 +40,13 @@ function Navbar() {
                     {/* <NavbarItem text={"Nosotros"} link={"/"} />   */}
 
                     <div className="right">
+                    {user ? (
+                            <NavbarItem text={"Mi Perfil"} className={"dropbtn"} link={"/my-profile"}  />
+                        ) : (
+                            <></>)}
+                        <li>
+                            <AuthButton />
+                        </li>
                         {/* <div className="dropdown">
                             <NavbarItem text={"Mi Sesión"} className={"dropbtn"} link={"/my-profile"}  /> */}
                             {/* <div className="dropdown-content">
@@ -47,10 +55,7 @@ function Navbar() {
                                 }
                             </div> */}
                         {/* </div> */}
-                        {user ? (
-                            <NavbarItem text={"Mi Perfil"} className={"dropbtn"} link={"/my-profile"}  />
-                        ) : (
-                            <NavbarItem text={"Iniciar Sesión"} link={"/log-in/"} />)}
+
                     </div>
                 </ul>
             </nav>
