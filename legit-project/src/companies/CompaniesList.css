@@ -30,9 +30,8 @@
 
 .company:hover {
     border-radius: 20px;
-    box-shadow: #010014 0px 19px 38px, rgba(255, 255, 255, 0.59) 30px 30px 36px -18px inset, #0F012130 0px -30px 60px -12px inset;
-    /* border: 5px solid #b8b6d600; */
-    /* box-shadow: rgba(229, 229, 255, 0.25) 0px 30px 60px -12px inset, rgba(214, 186, 186, 0.3) 0px 18px 36px -18px inset; */
+    transition-duration: 0.1s;
+    transform: scale(1.1);
 }
 
 .company h3 {
@@ -48,7 +47,7 @@
 } */
 
 .companies-v-container h1{
-    color: #EA0B4E;
+    color: #B8B6D6;
 }
 
 .companies {

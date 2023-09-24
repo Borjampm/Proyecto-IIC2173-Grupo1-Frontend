@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App'
-import Registration from './registration/Registration'
 import MyProfile from './user/MyProfile'
 import MyStocks from './user/MyStocks'
 import LogIn from './user/LogIn';
