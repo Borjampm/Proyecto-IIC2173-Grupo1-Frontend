@@ -67,9 +67,9 @@ function CompanyDetail() {
       .post(`${API_URL}/transactions/buy`, {
         Username: user.sub,
         Quantity: stocksAdded,
-        Symbol: companyName,
+        Symbol: companySymbol,
         IPAddres: user.custom_metadata.ip_adress,
-        Price: stocks.slice(-1)[0].price
+        Price: apiResponse.slice(-1)[0].price
       })
       .then((response) => {
         window.location.href = '/my-stocks';

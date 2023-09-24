@@ -4,11 +4,11 @@ import './MyProfile.css'
 import axios from 'axios'
 import AuthButton from "./AuthButton";
 import { useAuth0 } from '@auth0/auth0-react';
+import { API_URL } from '../config.js';
 
 
 function MyProfile() {
     const { user, isAuthenticated } = useAuth0();
-    const API_URL = 'http://localhost:8000'    // URL de la API
 
     // const [userInformation, setUserInformation] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
 
