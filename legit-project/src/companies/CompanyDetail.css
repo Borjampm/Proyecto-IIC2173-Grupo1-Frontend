@@ -1,0 +1,35 @@
+.stock {
+    background-color: #F3F3F8;
+    color: #140D75;
+}
+
+.company-detail {
+    margin-top: 5em;
+    width: 50vw;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form input {
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.field {
+    padding: 1em;
+}
+
+form label {
+    font-weight: 300;
+}
+
+.company-detail h2 {
+    font-size: 30px;
+    font-weight: 200;
+}

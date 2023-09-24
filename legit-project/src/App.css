@@ -1,0 +1,16 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+}
+
+.welcome-home h2{
+  font-size: 40px;
+  font-weight: 200;
+  margin-bottom: 0px;
+}
+
+.welcome-home h1{
+  margin-top: 0px;
+}

@@ -1,0 +1,83 @@
+.companies-v-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;                   /* Quiero cambiar el color background del body */
+    /* background-color: #F3F3F8;           */
+    background-color: transparent;
+    border-radius: 40px;
+    margin-top: 5em;
+    
+}
+
+.company {
+    margin: 2em;
+    background-color: #F3F3F8;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    height: 10em;
+    color: #8F8DAC;
+    /* border: 5px solid #B8B6D6; */
+    border-radius: 20px;
+    transition-duration: 0.4s;
+    /* box-shadow: #010014 0px 19px 38px; */
+    box-shadow: #010014 0px 19px 38px, #0F012130 0px -30px 60px -12px inset;
+    /* box-shadow: #01001430 0px 19px 38px, #01001422 0px 15px 12px; */
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+.company:hover {
+    border-radius: 20px;
+    transition-duration: 0.1s;
+    transform: scale(1.1);
+}
+
+.company h3 {
+    color: #140D75;
+}
+
+/* .company p {
+    color: #F3F3F8;
+} */
+
+/* .companies-v-container h1 {
+    color: #EA0B4E;
+} */
+
+.companies-v-container h1{
+    color: #B8B6D6;
+}
+
+.companies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+
+.companies-v-container .company:hover {
+    /* border: 5px solid #EA0B4E; */
+    transition-duration: 0.4s;
+    background-color: #B8B6D6;
+    /* background-color: #EA0B4E; */
+    /* color: #F3F3F8; */
+
+}
+
+/* .company h3:hover {
+    color: #F3F3F8;
+} */
+
+/* 
+.company p {
+    color: #B8B6D6;
+} */
+
+
+/* body {
+    background-color: #B4B3BE;
+} */
