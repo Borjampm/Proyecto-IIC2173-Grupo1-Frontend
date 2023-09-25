@@ -1,6 +1,6 @@
 //const FRONT_PROXY = import.meta.env.PROXY;
-const FRONT_PROXY = "https://borjampm.me";
-const API_URL = "https://iic2173-cristobalcuneo.me";
+const FRONT_PROXY = "https://www.borjampm.me";
+const API_URL = "https://api.iic2173-cristobalcuneo.me";
 
 //Auth0 Config Params
 const DOMAIN = "dev-ju2sb7gpzdrwv31f.us.auth0.com";
