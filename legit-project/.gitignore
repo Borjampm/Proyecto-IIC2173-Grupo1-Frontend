@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+aws
+awscliv2.zip
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
