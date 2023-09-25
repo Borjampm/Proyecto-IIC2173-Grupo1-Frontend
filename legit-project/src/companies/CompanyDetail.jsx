@@ -6,7 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 
 function CompanyDetail() {
-  const { user, isAuthenticated, context } = useAuth0();
+  const { user, isAuthenticated, context, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
   const { companySymbol } = useParams();
   const [page, setPage] = useState(1);
   const [msg, setMsg] = useState("");
@@ -15,6 +15,9 @@ function CompanyDetail() {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [lastStockValue, setLastStockValue] = useState(null)
+
+
+
 
   function getDateComponents(dateString) {
     const date = new Date(dateString);
@@ -62,6 +65,10 @@ function CompanyDetail() {
   // Envía los datos al backend para hacer efectivo el registro
   const buyStock = async(e) => {
     e.preventDefault();
+    const idToken = await getIdTokenClaims();
+    const anotherToken = await getAccessTokenSilently();
+    const tokenBearer = "Bearer " + anotherToken
+    console.log("second token", anotherToken.__raw)
 
     axios
       .post(`${API_URL}/transactions/buy`, {
@@ -70,12 +77,18 @@ function CompanyDetail() {
         Symbol: companySymbol,
         IPAddres: user.custom_metadata.ip_adress,
         Price: apiResponse.slice(-1)[0].price
+      },
+      {
+        headers: {
+          Authorization: tokenBearer
+        }
       })
       .then((response) => {
         window.location.href = '/my-stocks';
         setMsg("Compradas, ve el estado de tus compras aqui")
       })
       .catch((error) => {
+        console.log(error, "not enough money")
         setBuymsg("Error al comprar stocks")
       })
   }
