@@ -16,9 +16,6 @@ function CompanyDetail() {
   const [apiResponse, setApiResponse] = useState(null)
   const [lastStockValue, setLastStockValue] = useState(null)
 
-
-
-
   function getDateComponents(dateString) {
     const date = new Date(dateString);
 
@@ -44,7 +41,6 @@ function CompanyDetail() {
         setMsg("Información obtenida correctamente");
       })
       .catch((error) => {
-        console.log("error all stocks", error)
         setMsg(`Error al obtener la información de las empresas ${error.response.data.message}`)
       });
   }, [page]);
@@ -58,7 +54,6 @@ function CompanyDetail() {
         setLastStockValue(lastStocksValues[companySymbol]);
       })
       .catch((error) => {
-        console.log("error last stock", error)
       });
   }, [page]);
 
@@ -68,7 +63,6 @@ function CompanyDetail() {
     const idToken = await getIdTokenClaims();
     const anotherToken = await getAccessTokenSilently();
     const tokenBearer = "Bearer " + anotherToken
-    console.log("second token", anotherToken.__raw)
 
     axios
       .post(`${API_URL}/transactions/buy`, {
@@ -84,11 +78,10 @@ function CompanyDetail() {
         }
       })
       .then((response) => {
-        window.location.href = '/my-stocks';
+        window.location.href = '/my-stocks'; //TODO: esto solo debe redirecccionar si es que tenía plata
         setMsg("Compradas, ve el estado de tus compras aqui")
       })
       .catch((error) => {
-        console.log(error, "not enough money")
         setBuymsg("Error al comprar stocks")
       })
   }

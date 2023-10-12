@@ -13,7 +13,6 @@ function App() {
           user ? (
             <>
               <h2 className="welcome">Welcome {user.email}</h2>
-              {/* <h2 className="welcome-email"></h2> */}
             </>
           ) : (
             <h2 className="welcome">Welcome to</h2>
