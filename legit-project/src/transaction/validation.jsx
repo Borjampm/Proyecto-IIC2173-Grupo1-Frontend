@@ -13,7 +13,7 @@ function Validation() {
     const handleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
         console.log("user", user.sub)
-        axios.post(`${API_URL}/webpay-result`, {
+        axios.post(`${API_URL}/transactions/webpay-result`, {
             Username: user.sub,
             Token: searchParams.get("token_ws")
         }).then((response) => {
