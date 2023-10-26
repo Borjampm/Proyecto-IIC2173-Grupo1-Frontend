@@ -9,6 +9,7 @@ function Validation() {
 
     const { user, isAuthenticated } = useAuth0();
     const [searchParams, setSearchParams] = useSearchParams();
+    const [buyStatus, setBuyStatus] = useState();
 
     const handleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
@@ -17,6 +18,8 @@ function Validation() {
             Username: user.sub,
             Token: searchParams.get("token_ws")
         }).then((response) => {
+            console.log(response);
+            setBuyStatus(response.body);
             setMsg("Added to db")
         }).catch((error) => {
             setMsg("Not added to DB")
@@ -24,11 +27,22 @@ function Validation() {
     }
     // Token
     // Username
+
+    // Ver si token es nulo para no hacer el post
+    // Se hace e post, y segun eso sale compra exitosa o compra denegada
  
     return (
         <>
-            <p>Compra realizada</p>
-            <button onClick={() => handleBuy()}>POST</button>
+
+            {searchParams.get("token_ws") ? (
+                <>
+                    <p>Transacción realizada</p>
+                    <button onClick={() => handleBuy()}>Confirmar estado</button>
+                </>
+            ) : (
+                <p>Transacción anulada</p>
+            )}
+            
         </>
     )
 
