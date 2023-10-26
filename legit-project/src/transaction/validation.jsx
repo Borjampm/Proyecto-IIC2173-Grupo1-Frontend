@@ -10,6 +10,7 @@ function Validation() {
     const { user, isAuthenticated } = useAuth0();
     const [searchParams, setSearchParams] = useSearchParams();
     const [buyStatus, setBuyStatus] = useState();
+    const [msg, setMsg] = useState("");
 
     const handleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
@@ -19,7 +20,7 @@ function Validation() {
             Token: searchParams.get("token_ws")
         }).then((response) => {
             console.log(response);
-            setBuyStatus(response.body);
+            setBuyStatus(response.data);
             setMsg("Added to db")
         }).catch((error) => {
             setMsg("Not added to DB")
@@ -41,6 +42,14 @@ function Validation() {
                 </>
             ) : (
                 <p>Transacción anulada</p>
+            )}
+
+            {buyStatus ? (
+                <>
+                    <p>Compra exitosa</p>
+                </>
+            ) : (
+                <p>Compra rechazada</p>
             )}
             
         </>
