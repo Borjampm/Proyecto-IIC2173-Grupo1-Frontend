@@ -5,6 +5,7 @@ import MyStocks from './user/MyStocks'
 import LogIn from './user/LogIn';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
+import Validation from './transaction/validation';
 
 function Routing() {
     return (
@@ -17,6 +18,7 @@ function Routing() {
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/companies" element={<CompaniesList />} />
                 <Route path="/companies/:companySymbol" element={<CompanyDetail />} />
+                <Route path="/validate-transaction" element={<Validation />} />
             </Routes>
         </BrowserRouter>
         </>
