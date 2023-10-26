@@ -14,7 +14,9 @@ function CompanyDetail() {
   const [stocksAdded, setStocksAdded] = useState(1)
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
-  const [lastStockValue, setLastStockValue] = useState(null)
+  const [lastStockValue, setLastStockValue] = useState(null);
+  const [tbkUrl, setTbkUrl] = useState("")
+  const [tbkToken, setTbkToken] = useState("")
 
   function getDateComponents(dateString) {
     const date = new Date(dateString);
@@ -55,7 +57,7 @@ function CompanyDetail() {
       })
       .catch((error) => {
       });
-  }, [page]);
+  }, [page, tbkUrl, tbkToken]);
 
   // Envía los datos al backend para hacer efectivo el registro
   const buyStock = async(e) => {
@@ -78,7 +80,10 @@ function CompanyDetail() {
         }
       })
       .then((response) => {
-        window.location.href = '/my-stocks'; //TODO: esto solo debe redirecccionar si es que tenía plata
+        console.log("tooken", response.data);
+        setTbkToken(response.data.token);
+        setTbkUrl(response.data.url);
+         //TODO: esto solo debe redirecccionar si es que tenía plata
         setMsg("Compradas, ve el estado de tus compras aqui")
       })
       .catch((error) => {
@@ -98,6 +103,10 @@ function CompanyDetail() {
     }
   }
 
+  function buy() {
+    console.log("works");
+  }
+
   return (
     <>
       <div className='company-detail'>
@@ -114,6 +123,25 @@ function CompanyDetail() {
                 </div>
 
                 <button type="submit" className="btn" >Buy Stocks</button>
+              </form>
+
+              <form id="tbk" className="form" onSubmit={buy}>
+                <div className="field">
+                  <label htmlFor="tbktoken">{tbkToken}</label>  
+                  {/* <input type="tbktoken" name="tbktoken" value={tbkToken} required /> */}
+                </div>
+
+                <div className="field">
+                  <label htmlFor="tbkUrl">{tbkUrl}</label>  
+                  {/* <input type="tbkUrl" name="tbkUrl" value={tbkUrl} required /> */}
+                  
+                </div>
+
+                <button type="submit" className="btn" >Buy Stocks</button>
+              </form>
+              <form method="post" action={tbkUrl}>
+                <input type="hidden" name="token_ws" value={tbkToken} />
+                <input type="submit" value="Ir a pagar" />
               </form>
               <p>{buymsg}</p>
             </>
