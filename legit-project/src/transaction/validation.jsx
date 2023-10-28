@@ -26,6 +26,19 @@ function Validation() {
             setMsg("Not added to DB")
         })    
     }
+
+    const handlePDF = async(e) => {
+        axios.post(`${API_URL}/pdf-serverless-2-demo-lambda_handler`, {
+            group: 1,
+            user: user.email,
+        }).then((response) => {
+            console.log(response);
+            console.log("good pdf");
+        }).catch((error) => {
+            console.log(error)
+            console.log("bad pdf");
+        })    
+    }
     // Token
     // Username
 
@@ -47,6 +60,7 @@ function Validation() {
             {buyStatus ? (
                 <>
                     <p>Compra exitosa</p>
+                    <button onClick={() => handlePDF()}>Ver comprobate de compra</button>
                 </>
             ) : (
                 <p>Compra rechazada</p>
