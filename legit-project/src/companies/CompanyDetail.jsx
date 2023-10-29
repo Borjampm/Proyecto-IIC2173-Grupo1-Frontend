@@ -6,13 +6,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 
 function CompanyDetail() {
-  const { user, isAuthenticated, context, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
+  const { user, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
   const { companySymbol } = useParams();
   const [page, setPage] = useState(1);
   const [msg, setMsg] = useState("");
   const [buymsg, setBuymsg] = useState("");
   const [stocksAdded, setStocksAdded] = useState(1)
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [lastStockValue, setLastStockValue] = useState(null);
   const [tbkUrl, setTbkUrl] = useState("")
@@ -45,7 +44,7 @@ function CompanyDetail() {
       .catch((error) => {
         setMsg(`Error al obtener la información de las empresas ${error.response.data.message}`)
       });
-  }, [page]);
+  }, [page, companySymbol]);
 
   // Obtener el valor del último stock de la empresa
   useEffect(() => {             
@@ -57,7 +56,7 @@ function CompanyDetail() {
       })
       .catch((error) => {
       });
-  }, [page, tbkUrl, tbkToken]);
+  }, [page, tbkUrl, tbkToken, companySymbol]);
 
   // Envía los datos al backend para hacer efectivo el registro
   const buyStock = async(e) => {
