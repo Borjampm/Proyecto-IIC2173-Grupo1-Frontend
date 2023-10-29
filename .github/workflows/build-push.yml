@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     defaults:
         run:
@@ -25,5 +25,5 @@ jobs:
         run: yarn install && yarn build
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./dist s3://e1-arquisis --delete
-    #   - name: Invalidate cache
-    #     run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
