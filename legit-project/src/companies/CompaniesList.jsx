@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './CompaniesList.css'
 import axios from 'axios'
 import { API_URL } from '../config'
+// import amazon from './../assets/logos/AMZN.png'
 
 function CompaniesList() {
     const [apiResponse, setApiResponse] = useState(null)
@@ -25,7 +26,11 @@ function CompaniesList() {
  
     return (
         <div className="companies-v-container">
-            <p>{ msg }</p>
+            { msg ? (
+                <></>
+            ): (
+                <p>Error obteniendo las empresas, intenta más tarde.</p>
+            )}
             <h1>Companies</h1>
             <div className="companies">
                 { 
@@ -33,9 +38,14 @@ function CompaniesList() {
                         apiResponse.map((company) =>
                             <Link key={company.symbol} to={`/companies/${company.symbol}`}>
                                 <div className="company">
-                                    <p>{ company.symbol }</p>
-                                    <p>{ company.price }</p>
-                                    <h3>{ company.shortName }</h3>
+                                    <img src={`/src/assets/logos/${company.symbol}.png`} alt="Your Image" />
+                                    <div className="company-text">
+                                        <h3>{ company.shortName }</h3>
+                                        
+                                        <p>{ company.price }</p>
+                                        
+                                        <p>{ company.symbol }</p>
+                                    </div>
                                 </div>
                             </Link>
                         )

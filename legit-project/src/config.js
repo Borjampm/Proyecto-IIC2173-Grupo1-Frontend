@@ -1,8 +1,8 @@
-// const FRONT_PROXY = "http://localhost:5173";
-// const API_URL = "http://localhost:8000";
+const FRONT_PROXY = "http://localhost:5173";
+const API_URL = "http://localhost:8000";
 
-const FRONT_PROXY = "https://www.borjampm.me";
-const API_URL = "https://rpmvwdb78f.execute-api.us-east-2.amazonaws.com"
+// const FRONT_PROXY = "https://www.borjampm.me";
+// const API_URL = "https://rpmvwdb78f.execute-api.us-east-2.amazonaws.com"
 
 //Auth0 Config Params
 const DOMAIN = "dev-ju2sb7gpzdrwv31f.us.auth0.com";

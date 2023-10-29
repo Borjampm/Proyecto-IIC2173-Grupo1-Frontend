@@ -103,6 +103,16 @@ function CompanyDetail() {
     }
   }
 
+  function sum(e) {
+    setStocksAdded(stocksAdded + 1)
+  }
+
+  function less(e) {
+    if (stocksAdded - 1 > 0) {
+      setStocksAdded(stocksAdded - 1)
+    }
+  }
+
   function buy() {
     console.log("works");
   }
@@ -117,32 +127,43 @@ function CompanyDetail() {
           user ? (
             <>
               <form id="buy-stock" className="form" onSubmit={buyStock}>
-                <div className="field">
-                  <label htmlFor="number">Select the number of stocks</label>  
+                {/* <div className="field">
+                  
                   <input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required />
-                </div>
+                </div> */}
+                <div className="number-field">
+                <label htmlFor="number">Select the number of stocks you want to buy</label>  
+                  {/* <label htmlFor="number">Select the number of stocks</label>   */}
+                  <br></br>
+                  <p onClick={less}>-</p><input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required /><p  onClick={sum}>+</p>
+                </div>    
+                <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>            
 
                 <button type="submit" className="btn" >Buy Stocks</button>
               </form>
+              
 
-              <form id="tbk" className="form" onSubmit={buy}>
+              {/* <form id="tbk" className="form" onSubmit={buy}>
                 <div className="field">
                   <label htmlFor="tbktoken">{tbkToken}</label>  
-                  {/* <input type="tbktoken" name="tbktoken" value={tbkToken} required /> */}
+                  <input type="tbktoken" name="tbktoken" value={tbkToken} required />
                 </div>
 
                 <div className="field">
                   <label htmlFor="tbkUrl">{tbkUrl}</label>  
-                  {/* <input type="tbkUrl" name="tbkUrl" value={tbkUrl} required /> */}
+                  <input type="tbkUrl" name="tbkUrl" value={tbkUrl} required />
                   
                 </div>
 
                 <button type="submit" className="btn" >Buy Stocks</button>
-              </form>
-              <form method="post" action={tbkUrl}>
-                <input type="hidden" name="token_ws" value={tbkToken} />
-                <input type="submit" value="Ir a pagar" />
-              </form>
+              </form> */}
+              {tbkToken ? (
+                              <form method="post" action={tbkUrl}>
+                              <input type="hidden" name="token_ws" value={tbkToken} />
+                              <button type="submit" value="Ir a pagar">Ir a pagar</button>
+                            </form>
+              ):(<></>)}
+
               <p>{buymsg}</p>
             </>
           ) : <p>¡Login to buy stocks!</p> 
