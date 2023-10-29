@@ -6,35 +6,60 @@
     background-color: transparent;
     border-radius: 40px;
     margin-top: 5em;
-    
+    align-items: center;
 }
 
 .company {
     margin: 2em;
-    background-color: #F3F3F8;
-    padding: 2em;
+    background-color: #FEEBD2;
+    padding-left: 2em;
+    padding-right: 2em;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 10em;
-    height: 10em;
-    color: #8F8DAC;
+    height: 16em;
+    color: #243B6B;
     border-radius: 20px;
     transition-duration: 0.4s;
-    box-shadow: #010014 0px 19px 38px, #0F012130 0px -30px 60px -12px inset;
+    box-shadow: #01001460 0px 10px 15px, #0F012110 0px -30px 60px -12px inset;
 }
 
 .company:hover {
-    border-radius: 20px;
+    /* border-radius: 20px; */
     transition-duration: 0.1s;
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
+}
+
+.company-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 1em;
+    margin-left: -1em;
+    margin-right: -1em;
 }
 
 .company h3 {
-    color: #140D75;
+    color: #FF615B;
+    margin: 0em;
+    padding: 0px;
 }
 
+.company p {
+    margin: 0em;
+    padding: 0px;
+}
+
+
 .companies-v-container h1{
-    color: #B8B6D6;
+    color: #FEEBD2;
+    background-color: #FF615B;
+    font-weight: 300;
+    height: 1.5em;
+    width: 300px;
+    padding-top: 0.2em;
 }
 
 .companies {
@@ -46,5 +71,15 @@
 
 .companies-v-container .company:hover {
     transition-duration: 0.4s;
-    background-color: #B8B6D6;
+    background-color: #fffaf3;
+}
+
+.companies-v-container img {
+    /* transform: scale(0.6); */
+    /* max-height: 50%; */
+    
+    max-width: 7em;
+    max-height: 7em;
+    object-fit: cover;
+    margin-top: 2em;
 }

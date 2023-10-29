@@ -6,6 +6,7 @@
 ul {
     list-style-type: none;
     width: 100vw;
+    height: 3.5em;
     margin: 0;
     padding: 0;
     background-color: transparent;
@@ -18,7 +19,7 @@ li {
 }
     
 li a {
-    color: #fff;
+    color: #FEEBD2;
     display: block;
     text-align: center;
     text-decoration-color: #000;
@@ -26,6 +27,7 @@ li a {
     text-decoration-thickness: 20%;
     min-width: 10vw;
     transition: 0.5s;
+    margin-top: 0.1em;
 }
     
 li.dropdown {
@@ -35,6 +37,7 @@ li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
+    padding-top: 10px;
     background-color: #000;
     min-width: 10vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);
@@ -46,13 +49,13 @@ li.dropdown {
     
 li a, .dropbtn {
     display: block;
-    color: white;
+    color: #FEEBD2;
     padding: 14px 16px;
 }
     
 li a:hover, .dropdown:hover .dropbtn {
     /* background-color: rgba(6, 92, 230, 0.842); */
-    text-decoration-color: #fff;
+    text-decoration-color: #FEEBD2;
     transition: 0.5s;
 }
     
@@ -76,4 +79,10 @@ header {
 
 .auth-btn {
     margin: 0.5em;
+}
+
+nav {
+    background-color: #243B6B99;
+    /* -webkit-backdrop-filter: blur(8px); */
+    backdrop-filter: blur(10px);
 }
