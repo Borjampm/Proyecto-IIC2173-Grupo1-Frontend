@@ -38,7 +38,7 @@ function CompaniesList() {
                         apiResponse.map((company) =>
                             <Link key={company.symbol} to={`/companies/${company.symbol}`}>
                                 <div className="company">
-                                    <img src={`./public/assets/logos/${company.symbol}.png`} alt="Your Image" />
+                                    <img src={`assets/logos/${company.symbol}.png`} alt="Your Image" />
                                     <div className="company-text">
                                         <h3>{ company.shortName }</h3>
                                         
