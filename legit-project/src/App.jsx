@@ -19,7 +19,7 @@ function App() {
           )
         }
         
-        <h1>Legit Bussines</h1>
+        <h1>Legit Bussines!</h1>
         <Link to="/companies">
           <button className="btn">Get started</button>
         </Link>
