@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { API_URL } from '../config'
 import { useAuth0 } from '@auth0/auth0-react';
@@ -7,10 +6,10 @@ import { useSearchParams } from "react-router-dom";
 
 function Validation() {
 
-    const { user, isAuthenticated } = useAuth0();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const { user } = useAuth0();
+    const [searchParams] = useSearchParams();
     const [buyStatus, setBuyStatus] = useState();
-    const [msg, setMsg] = useState("");
+    // const [msg, setMsg] = useState("");
     const [PDF, setPDF] = useState();
 
     const handleBuy = async(e) => {
@@ -43,8 +42,6 @@ function Validation() {
             console.log("bad pdf");
         })    
     }
-
-    const externalURL = 'https://www.example.com';
 
     const openExternalSite = () => {
       window.open(PDF, '_blank');
