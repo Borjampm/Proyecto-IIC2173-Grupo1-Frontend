@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
+  font-size: 15px;
 }
 
 .welcome-home h2{
@@ -13,4 +14,8 @@
 
 .welcome-home h1{
   margin-top: 0px;
+}
+
+.welcome-home span{
+  color: #FF615B;
 }

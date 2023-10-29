@@ -1,11 +1,22 @@
 .stock {
     background-color: #F3F3F8;
-    color: #140D75;
+    color: #243B6B;
 }
 
 .company-detail {
     margin-top: 5em;
     width: 50vw;
+    background-color: #FEEBD2;
+    border-radius: 40px;
+    color: #243B6B;
+    box-shadow: #01001460 0px 10px 15px, #0F012110 0px -30px 60px -12px inset;
+}
+
+.company-detail h1{
+    padding-top: 1em;
+    font-size: 4em;
+    /* font-weight: 500; */
+    color: #FF615B;
 }
 
 .form {
@@ -31,5 +42,54 @@ form label {
 
 .company-detail h2 {
     font-size: 30px;
-    font-weight: 200;
+    font-weight: 300;
+    color: #243B6B;
+}
+
+.number-field input{
+    background-color: transparent;
+    border: none;
+    display: inline;
+    width: 30px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #243B6B;;
+}
+
+/* .number-field p{
+    display: inline-block;
+} */
+
+.number-field p{
+    display: inline-block;
+    background-color: #243B6B;
+    width: 30px;
+    border-radius: 40px;
+    color: #FEEBD2;
+    font-weight: 500;
+    font-size: 20px;
+    box-shadow: #01001440 0px 3px 5px, #0F012110 0px -5px 5px -5px inset;
+}
+
+.number-field p:hover{
+    cursor: pointer;
+    transition-duration: 0.5s;
+    background-color: #4562a1;
+    
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.company-detail button {
+    border: 2px solid #243B6B;
+    color: #243B6B;
+}
+
+.company-detail button:hover {
+    background-color: #243B6B;
+    color: #FEEBD2;
 }
