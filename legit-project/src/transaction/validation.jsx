@@ -43,6 +43,8 @@ function Validation() {
 
 
         }
+
+        console.log("rrr", requestData)
         
         axios.post(`${API_URL}/pdf-serverless-2-demo-lambda_handler`,requestData).then((response) => {
             console.log(response);
