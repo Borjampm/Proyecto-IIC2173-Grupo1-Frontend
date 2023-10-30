@@ -41,7 +41,7 @@ function MyStocks() {
                     userStocks.length > 0 ? (
                         userStocks.map(function (stock, i) {
                         console.log(stock);
-                        const pdfUrl = `https://e1-arquisis.s3.amazonaws.com/pdf/pdf_${stock.UserId}_${stock.Date}.pdf`
+                        const pdfUrl = `https://e1-arquisis.s3.amazonaws.com/pdf/pdf_${stock.Username}_${stock.TotalAmount}.pdf`
                         return (
                             <>
                                 <p key={i}>
