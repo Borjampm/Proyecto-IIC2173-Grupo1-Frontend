@@ -9,8 +9,9 @@ function Validation() {
     const { user } = useAuth0();
     const [searchParams] = useSearchParams();
     const [buyStatus, setBuyStatus] = useState();
-    // const [msg, setMsg] = useState("");
+    const [msg, setMsg] = useState("");
     const [PDF, setPDF] = useState();
+    const [transaction, setTransaction] = useState();
 
     const handleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
@@ -19,8 +20,10 @@ function Validation() {
             Username: user.sub,
             Token: searchParams.get("token_ws")
         }).then((response) => {
+            
             console.log(response);
             setBuyStatus(response.data);
+            setTransaction(response.data)
             setMsg("Added to db")
         }).catch((error) => {
             setMsg("Not added to DB")
@@ -31,6 +34,14 @@ function Validation() {
         const requestData = {
             group: "1",
             user: user.email,
+            companyId: transaction.CompanyId,
+            quantity: transaction.Quantity,
+            price: transaction.Price,
+            totalAmount: transaction.TotalAmount,
+            date: transaction.Date,
+            userId: transaction.UserId
+
+
         }
         
         axios.post(`${API_URL}/pdf-serverless-2-demo-lambda_handler`,requestData).then((response) => {

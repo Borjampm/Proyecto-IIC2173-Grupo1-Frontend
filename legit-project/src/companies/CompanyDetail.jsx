@@ -16,6 +16,8 @@ function CompanyDetail() {
   const [lastStockValue, setLastStockValue] = useState(null);
   const [tbkUrl, setTbkUrl] = useState("")
   const [tbkToken, setTbkToken] = useState("")
+  const [days, setDays] = useState(1)
+  const [msgPrediction, setMsgPrediction] = useState("");
 
   function getDateComponents(dateString) {
     const date = new Date(dateString);
@@ -116,6 +118,34 @@ function CompanyDetail() {
     console.log("works");
   }
 
+  function lessDays() {
+    if (days - 1 > 0) {
+      setDays(days - 1)
+    }
+  }
+
+  function sumDays() {
+      setDays(days + 1)
+  }
+
+  function handlePrediction(e) {
+    e.preventDefault();
+    axios
+      .post(`${API_URL}/predictions`, {
+        DaysBack: days,
+        Symbol: companySymbol,
+        Quantity: stocksAdded,
+        Id: user.sub
+      })
+      .then((response) => {
+        setMsgPrediction("La solicitud de predicciones fue enviada, ve a Tu Perfil en un rato para ver el resultado")
+      })
+      .catch((error) => {
+        console.log(error)
+        setMsgPrediction("No se pudo realizar la predicción, intenta denuevo más tarde.")
+      })
+  }
+
   return (
     <>
       <div className='company-detail'>
@@ -126,41 +156,30 @@ function CompanyDetail() {
           user ? (
             <>
               <form id="buy-stock" className="form" onSubmit={buyStock}>
-                {/* <div className="field">
-                  
-                  <input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required />
-                </div> */}
                 <div className="number-field">
                 <label htmlFor="number">Select the number of stocks you want to buy</label>  
-                  {/* <label htmlFor="number">Select the number of stocks</label>   */}
                   <br></br>
                   <p onClick={less}>-</p><input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required /><p  onClick={sum}>+</p>
                 </div>    
-                <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>            
-
-                <button type="submit" className="btn" >Buy Stocks</button>
+                <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>  
+                <button type="submit" className="btn" >Buy stocks</button>  
               </form>
-              
 
-              {/* <form id="tbk" className="form" onSubmit={buy}>
-                <div className="field">
-                  <label htmlFor="tbktoken">{tbkToken}</label>  
-                  <input type="tbktoken" name="tbktoken" value={tbkToken} required />
-                </div>
-
-                <div className="field">
-                  <label htmlFor="tbkUrl">{tbkUrl}</label>  
-                  <input type="tbkUrl" name="tbkUrl" value={tbkUrl} required />
-                  
-                </div>
-
-                <button type="submit" className="btn" >Buy Stocks</button>
-              </form> */}
+              <form id="try-prediction" className="form" onSubmit={handlePrediction}>
+                <div className="number-field">
+                <label htmlFor="days">Para cuantos días quieres la prediccion?</label>  
+                  <br></br>
+                  <p onClick={lessDays}>-</p><input type="number" name="days" id="days" value={days} onChange={e => handleDaysAdded(e.target.value)} required /><p  onClick={sumDays}>+</p>
+                </div>              
+                {/* <button onClick={() => handlePrediction()}>Obtener predicción</button> */}
+                <button type="submit" className="btn" >Obtener predicción</button>
+                <p>{msgPrediction}</p>
+              </form>
               {tbkToken ? (
-                              <form method="post" action={tbkUrl}>
-                              <input type="hidden" name="token_ws" value={tbkToken} />
-                              <button type="submit" value="Ir a pagar">Ir a pagar</button>
-                            </form>
+                <form method="post" action={tbkUrl}>
+                  <input type="hidden" name="token_ws" value={tbkToken} />
+                  <button type="submit" value="Ir a pagar">Ir a pagar</button>
+                </form>
               ):(<></>)}
 
               <p>{buymsg}</p>
