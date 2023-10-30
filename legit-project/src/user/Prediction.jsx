@@ -10,6 +10,7 @@ function Prediction() {
     const { user, isAuthenticated } = useAuth0();
     const [msg, setMsg] = useState("")
     const { predictionId } = useParams();
+    console.log(predictionId)
     const [prediction, setPrediction] = useState(null)
     const [linearFunction, setLinearFunction] = useState(null)
     const [data, setData] = useState(null)
