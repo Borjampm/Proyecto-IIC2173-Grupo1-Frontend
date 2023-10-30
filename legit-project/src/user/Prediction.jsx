@@ -14,7 +14,7 @@ function Prediction() {
     const [linearFunction, setLinearFunction] = useState(null)
     const [data, setData] = useState(null)
     const [options, setOptions] = useState(null)
-
+ 
     useEffect(() => {
         if (user) {
             axios
