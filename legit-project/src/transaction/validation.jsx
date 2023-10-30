@@ -44,8 +44,6 @@ function Validation() {
         })    
     }
 
-    const externalURL = 'https://www.example.com';
-
     const openExternalSite = () => {
       window.open(PDF, '_blank');
     };
