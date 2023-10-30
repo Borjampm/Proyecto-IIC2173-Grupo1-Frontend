@@ -39,7 +39,7 @@ function Validation() {
             price: transaction.Price,
             totalAmount: transaction.TotalAmount,
             date: transaction.Date,
-            userId: transaction.UserId
+            userId: user.sub
 
 
         }
