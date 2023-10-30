@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config.js';
 import { useParams } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 
 function Prediction() {
     const { user, isAuthenticated } = useAuth0();

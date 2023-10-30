@@ -7,6 +7,7 @@ import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
 import Validation from './transaction/validation';
 import MyPredictions from './user/MyPredictions';
+import Prediction from './user/Prediction';
 
 function Routing() {
     return (
@@ -21,7 +22,7 @@ function Routing() {
                 <Route path="/companies/:companySymbol" element={<CompanyDetail />} />
                 <Route path="/validate-transaction" element={<Validation />} />
                 <Route path="/my-predictions" element={<MyPredictions />} />
-                <Route path="/my-predictions/:predictionId" element={<CompanyDetail />} />
+                <Route path="/my-predictions/:predictionId" element={<Prediction />} />
             </Routes>
         </BrowserRouter>
         </>
