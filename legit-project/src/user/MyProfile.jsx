@@ -79,6 +79,10 @@ function MyProfile() {
                                         <button className="btn">See my stocks
                                         </button>
                                     </Link>
+                                    <Link to="/my-predictions">
+                                        <button className="btn">See my predictions
+                                        </button>
+                                    </Link>
                                     <p>Money: ${user2.Wallet}</p>
                                     </>
                                 ) : (
