@@ -129,7 +129,8 @@ function CompanyDetail() {
       setDays(days + 1)
   }
 
-  function handlePrediction() {
+  function handlePrediction(e) {
+    e.preventDefault();
     axios
       .post(`${API_URL}/predictions`, {
         DaysBack: days,
@@ -141,6 +142,7 @@ function CompanyDetail() {
         setMsgPrediction("La solicitud de predicciones fue enviada, ve a Tu Perfil en un rato para ver el resultado")
       })
       .catch((error) => {
+        console.log(error)
         setMsgPrediction("No se pudo realizar la predicción, intenta denuevo más tarde.")
       })
   }
@@ -160,14 +162,18 @@ function CompanyDetail() {
                   <br></br>
                   <p onClick={less}>-</p><input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required /><p  onClick={sum}>+</p>
                 </div>    
-                <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>    
+                <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>  
+                <button type="submit" className="btn" >Buy stocks</button>  
+              </form>
+
+              <form id="try-prediction" className="form" onSubmit={handlePrediction}>
                 <div className="number-field">
                 <label htmlFor="days">Para cuantos días quieres la prediccion?</label>  
                   <br></br>
                   <p onClick={lessDays}>-</p><input type="number" name="days" id="days" value={days} onChange={e => handleDaysAdded(e.target.value)} required /><p  onClick={sumDays}>+</p>
                 </div>              
-                <button onClick={() => handlePrediction()}>Obtener predicción</button>
-                <button type="submit" className="btn" >Buy Stocks</button>
+                {/* <button onClick={() => handlePrediction()}>Obtener predicción</button> */}
+                <button type="submit" className="btn" >Obtener predicción</button>
                 <p>{msgPrediction}</p>
               </form>
               {tbkToken ? (

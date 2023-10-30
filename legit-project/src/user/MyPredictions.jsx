@@ -14,8 +14,8 @@ function MyPredictions() {
             axios
                 .get(`${API_URL}/predictions/${user.sub}`) 
                 .then((response) => {
-                    setUserPrediction(response.data.predictions_data);
-                    console.log(response.data.predictions_data, "user information")
+                    setUserPredictions(response.data.predictions);
+                    console.log(response.data.predictions, "user information")
                     setMsg("Información de predicciones obtenida correctamente");
                 })
                 .catch((error) => {
@@ -34,13 +34,16 @@ function MyPredictions() {
                     userPredictions.length > 0 ? (
                         userPredictions.map(function (prediction, i) {
                         console.log(prediction);
+                        let status = true
+                        if (prediction.state == "UNFINISHED") {
+                            status = false
+                        }
                         return (
                             <p key={i}>
-                            Prediction ID: {prediction.id} | Finished: {stock.Completed ? 
-                                <Link to={`/my-predictions/${prediction.id}`}>
+                            Prediction ID: {prediction.id} | Symbol: {prediction.symbol} | JobId: {prediction.job_id} 
+                                <Link to={`/my-predictions/${prediction.job_id}`}>
                                     <button>Ver predicción</button>
                                 </Link >
-                                : "Espera un poco más"}
                             </p>
                         );
                         })

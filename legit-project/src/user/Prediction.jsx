@@ -18,11 +18,11 @@ function Prediction() {
     useEffect(() => {
         if (user) {
             axios
-                .get(`${API_URL}/predictions/${predictionId}`) 
+                .get(`${API_URL}/predictions/view_result/${predictionId}`) 
                 .then((response) => {
-                    setPrediction(response.data.prediction_data);
-                    setLinearFunction(response.data.prediction_data.function);
-                    console.log(response.data.prediction_data, "prediction data")
+                    setPrediction(response.data);
+                    // setLinearFunction(response.data.prediction_data.function);
+                    // console.log(response.data.prediction_data, "prediction data")
 
                 })
                 .catch((error) => {
@@ -32,46 +32,46 @@ function Prediction() {
         }
     }, [user, predictionId]);
 
-    useEffect(() => {
-        const dataPoints = [];
-        for (let x = -10; x <= 10; x++) {
-          dataPoints.push({ x, y: linearFunction(x) });
-        }
+    // useEffect(() => {
+    //     const dataPoints = [];
+    //     for (let x = -10; x <= 10; x++) {
+    //       dataPoints.push({ x, y: linearFunction(x) });
+    //     }
 
-        setData({
-            labels: dataPoints.map((point) => point.x),
-            datasets: [
-              {
-                label: 'Linear Function',
-                data: dataPoints.map((point) => point.y),
-                fill: false,
-                borderColor: 'rgba(75, 192, 192, 1)',
-              },
-            ],
-          }
-        )
-        setOptions({
-            scales: {
-              x: {
-                type: 'linear',
-                position: 'bottom',
-              },
-              y: {
-                min: -10,
-                max: 30,
-              },
-            },
-          })
+    //     setData({
+    //         labels: dataPoints.map((point) => point.x),
+    //         datasets: [
+    //           {
+    //             label: 'Linear Function',
+    //             data: dataPoints.map((point) => point.y),
+    //             fill: false,
+    //             borderColor: 'rgba(75, 192, 192, 1)',
+    //           },
+    //         ],
+    //       }
+    //     )
+    //     setOptions({
+    //         scales: {
+    //           x: {
+    //             type: 'linear',
+    //             position: 'bottom',
+    //           },
+    //           y: {
+    //             min: -10,
+    //             max: 30,
+    //           },
+    //         },
+    //       })
       
 
-    }, [linearFunction])
+    // }, [linearFunction])
     
  
     return (
         <>
-            <h1>My Predictions</h1>
-            <p>Value: {prediction.valor} </p>
-            <Line data={data} options={options} />
+            <h1>Prediction</h1>
+            <p>Value: {prediction} </p>
+            {/* <Line data={data} options={options} /> */}
         </>
     )
 
