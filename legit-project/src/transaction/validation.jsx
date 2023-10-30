@@ -37,7 +37,10 @@ function Validation() {
             companyId: transaction.CompanyId,
             quantity: transaction.Quantity,
             price: transaction.Price,
-            totalAmount: transaction.TotalAmount
+            totalAmount: transaction.TotalAmount,
+            date: transaction.Date,
+            userId: transaction.UserId
+
 
         }
         
