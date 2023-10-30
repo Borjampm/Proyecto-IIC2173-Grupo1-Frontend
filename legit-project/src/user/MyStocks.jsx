@@ -24,7 +24,14 @@ function MyStocks() {
                 });
         }
     }, [user]);
-    
+
+    const openExternalSite = (url) => {
+        window.open(url, '_blank');
+      };
+
+    const handleRedirect = (url) => {
+        openExternalSite(url);
+      };
  
     return (
         <>
@@ -34,10 +41,14 @@ function MyStocks() {
                     userStocks.length > 0 ? (
                         userStocks.map(function (stock, i) {
                         console.log(stock);
+                        const pdfUrl = `https://e1-arquisis.s3.amazonaws.com/pdf/pdf_${stock.UserId}_${stock.Date}.pdf`
                         return (
-                            <p key={i}>
-                            Company: {stock.CompanyId} | Quantity: {stock.Quantity} | Price: {stock.Price} | Completed: {stock.Completed ? "true" : "false"}
-                            </p>
+                            <>
+                                <p key={i}>
+                                Company: {stock.CompanyId} | Quantity: {stock.Quantity} | Price: {stock.Price} | Completed: {stock.Completed ? "true" : "false"}
+                                </p>
+                                <button onClick={() => handleRedirect(pdfUrl)}>Abrir PDF</button>
+                            </>
                         );
                         })
                     ) : (
