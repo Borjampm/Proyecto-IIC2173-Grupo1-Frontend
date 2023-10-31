@@ -131,7 +131,7 @@ function CompanyDetail() {
   function handlePrediction(e) {
     e.preventDefault();
     axios
-      .post(`${API_URL}/predictions`, {
+      .post(`${API_URL}/predictions/addTask`, {
         DaysBack: days,
         Symbol: companySymbol,
         Quantity: stocksAdded,
