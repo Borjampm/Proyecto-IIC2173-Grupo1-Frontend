@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from './config.js';
+import { jwtDecode } from "jwt-decode";
 
 const ExternalApi = () => {
   const [message, setMessage] = useState('');
@@ -23,9 +24,10 @@ const ExternalApi = () => {
   const callSecureApi = async () => {
     try {
       const token = await getAccessTokenSilently();
-
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken, "decodedToken")
       const response = await fetch(
-        `${serverUrl}/external-secured`,
+        `${serverUrl}/external`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

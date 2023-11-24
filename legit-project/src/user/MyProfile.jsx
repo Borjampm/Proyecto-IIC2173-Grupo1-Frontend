@@ -43,7 +43,7 @@ function MyProfile() {
     const handleMoneyAmount = (p) => {     // Revisa que la contraseña tenga al menos 8 caracteres
         if (p >= 0) {
             if (user) {
-                console.log(user, "useer")
+                console.log(user)
                 console.log("QUE CHICHA")
                 const moneyBalance = p;
                 console.log(moneyBalance, "useeEEr")
