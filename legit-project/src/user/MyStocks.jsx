@@ -12,10 +12,10 @@ function MyStocks() {
     useEffect(() => {
         if (user) {
             axios
-                .get(`${API_URL}/transactions/${user.sub}`) 
+                .get(`${API_URL}/transactions/${user.sub}`)
                 .then((response) => {
                     setUserStocks(response.data.stocks_data);
-                    console.log(response.data.stocks_data, "user information")
+                    // console.log(response.data.stocks_data, "user information")
                     setMsg("Información de stocks obtenida correctamente");
                 })
                 .catch((error) => {
@@ -32,7 +32,7 @@ function MyStocks() {
     const handleRedirect = (url) => {
         openExternalSite(url);
       };
- 
+
     return (
         <>
             <h1>My Stocks</h1>
@@ -40,7 +40,7 @@ function MyStocks() {
                 userStocks ? (
                     userStocks.length > 0 ? (
                         userStocks.map(function (stock, i) {
-                        console.log(stock);
+                        // console.log(stock);
                         const pdfUrl = `https://e1-arquisis.s3.amazonaws.com/pdf/pdf_${stock.UserId}_${stock.Date}.pdf`
                         return (
                             <>

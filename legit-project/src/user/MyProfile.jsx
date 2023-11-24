@@ -10,7 +10,7 @@ import { API_URL } from '../config.js';
 function MyProfile() {
     const { user, isAuthenticated } = useAuth0();
     const [msg, setMsg] = useState("");     // Variable que almacena el mensaje de error
-    const [moneyAdded, setMoneyAdded] = useState(0); 
+    const [moneyAdded, setMoneyAdded] = useState(0);
     const [user2, setUser2] = useState(null)
     const [userInformation, setUserInformation] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
 
@@ -23,12 +23,12 @@ function MyProfile() {
             setMsg("Money added correctly")
         }).catch((error) => {
             setMsg("Error adding money")
-        })    
+        })
     }
 
     useEffect(() => {              // Envía los datos al backend para hacer efectivo el registro
         if (user) {
-        axios.get(`${API_URL}/users/${user.sub}`) 
+        axios.get(`${API_URL}/users/${user.sub}`)
           .then((response) => {
             setUserInformation(response.data);
             setUser2(response.data.stocks_data)
@@ -44,6 +44,7 @@ function MyProfile() {
         if (p >= 0) {
             if (user) {
                 console.log(user, "useer")
+                console.log("QUE CHICHA")
                 const moneyBalance = p;
                 console.log(moneyBalance, "useeEEr")
             }
@@ -54,7 +55,7 @@ function MyProfile() {
     }
 
     const handleMoney = async(e) => {      // Envía los datos al backend para hacer efectivo el registro
-        console.log("hiii")
+        console.log("user")
         axios.post(`${API_URL}/users/addfunds`, {
             Username: user.sub,
             Funds: moneyAdded
@@ -65,7 +66,7 @@ function MyProfile() {
             setMsg("Error adding money")
         })
     }
- 
+
     return (
         <>
             <div className="user-container">
@@ -86,14 +87,14 @@ function MyProfile() {
                                     <p>Money: ${user2.Wallet}</p>
                                     </>
                                 ) : (
-                                    <>                                   
+                                    <>
                                      <Link to="/">
                                         <button onClick={() => handleRegistration()} type="submit">Complete you registration</button>
                                     </Link >
 
                                     </>
                                     )
-                                }   
+                                }
                                         <br/>
                                         <br/>
                                         <br/>
