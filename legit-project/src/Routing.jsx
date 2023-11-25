@@ -9,6 +9,7 @@ import Validation from './transaction/validation';
 import MyPredictions from './user/MyPredictions';
 import Prediction from './user/Prediction';
 import ExternalApi from './ExternalApi';
+import Admin from './admin/Admin';
 
 function Routing() {
     return (
@@ -25,6 +26,7 @@ function Routing() {
                 <Route path="/my-predictions" element={<MyPredictions />} />
                 <Route path="/my-predictions/:predictionId" element={<Prediction />} />
                 <Route path="/external-api" element={<ExternalApi />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </BrowserRouter>
         </>

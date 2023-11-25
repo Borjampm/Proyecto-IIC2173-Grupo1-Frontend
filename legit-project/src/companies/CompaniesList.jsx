@@ -13,7 +13,7 @@ function CompaniesList() {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/companies/all`) 
+            .get(`${API_URL}/companies/all`)
             .then((response) => {
                 setApiResponse(response.data);
                 setMsg("Empresas obtenidas correctamente");
@@ -23,7 +23,7 @@ function CompaniesList() {
             });
         }, []
     );
- 
+
     return (
         <div className="companies-v-container">
             { msg ? (
@@ -33,7 +33,7 @@ function CompaniesList() {
             )}
             <h1>Companies</h1>
             <div className="companies">
-                { 
+                {
                     apiResponse ? (
                         apiResponse.map((company) =>
                             <Link key={company.symbol} to={`/companies/${company.symbol}`}>
@@ -41,9 +41,9 @@ function CompaniesList() {
                                     <img src={`assets/logos/${company.symbol}.png`} alt="Your Image" />
                                     <div className="company-text">
                                         <h3>{ company.shortName }</h3>
-                                        
+
                                         <p>{ company.price }</p>
-                                        
+
                                         <p>{ company.symbol }</p>
                                     </div>
                                 </div>
