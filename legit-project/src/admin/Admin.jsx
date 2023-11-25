@@ -23,7 +23,6 @@ const Admin = () => {
             setAdmin(true)
         }
         console.log(decodedToken.permissions[0], "decodedToken")
-        setAdmin(false)
     } catch (error) {
       setMessage(error.message);
     }
@@ -34,7 +33,6 @@ const Admin = () => {
     <h1>Only for admins</h1>
         { admin ? ( <p>You are an admin</p>)
         : ( <p>you are not an admin</p>)}
-    <h1>{admin}</h1>
     </>
   )
 };
