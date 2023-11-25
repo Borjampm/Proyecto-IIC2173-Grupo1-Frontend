@@ -5,6 +5,7 @@ import axios from 'axios'
 import AuthButton from "./AuthButton";
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config.js';
+import { jwtDecode } from "jwt-decode";
 
 
 function MyProfile() {
@@ -12,7 +13,28 @@ function MyProfile() {
     const [msg, setMsg] = useState("");     // Variable que almacena el mensaje de error
     const [moneyAdded, setMoneyAdded] = useState(0);
     const [user2, setUser2] = useState(null)
-    const [userInformation, setUserInformation] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
+    const [userInformation, setUserInformation] = useState(null)
+    const [admin, setAdmin] = useState(false);   // Variable que almacena los datos de la API para utilizarlo después
+
+    const { getAccessTokenSilently } = useAuth0();
+
+    useEffect(() => {
+        callSecureApi();
+    }, []);
+
+    const callSecureApi = async () => {
+        try {
+            const token = await getAccessTokenSilently();
+            const decodedToken = jwtDecode(token);
+            if (decodedToken.permissions[0] === "admin") {
+                console.log("admin")
+                setAdmin(true)
+            }
+            console.log(decodedToken.permissions[0], "decodedToken")
+        } catch (error) {
+        setMessage(error.message);
+        }
+    };
 
     const handleRegistration = async(e) => {
         axios.post(`${API_URL}/users/signup`, {
@@ -84,6 +106,12 @@ function MyProfile() {
                                         <button className="btn">See my predictions
                                         </button>
                                     </Link>
+                                    { admin ? (
+                                    <Link to="/admin/auctions">
+                                        <button className="btn">See my auctions
+                                        </button>
+                                    </Link>
+                                    ) : (<></>)}
                                     <p>Money: ${user2.Wallet}</p>
                                     </>
                                 ) : (

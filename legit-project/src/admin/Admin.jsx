@@ -14,19 +14,19 @@ const Admin = () => {
         callSecureApi();
     }, []);
 
-  const callSecureApi = async () => {
-    try {
-        const token = await getAccessTokenSilently();
-        const decodedToken = jwtDecode(token);
-        if (decodedToken.permissions[0] === "admin") {
-            console.log("admin")
-            setAdmin(true)
+    const callSecureApi = async () => {
+        try {
+            const token = await getAccessTokenSilently();
+            const decodedToken = jwtDecode(token);
+            if (decodedToken.permissions[0] === "admin") {
+                console.log("admin")
+                setAdmin(true)
+            }
+            console.log(decodedToken.permissions[0], "decodedToken")
+        } catch (error) {
+        setMessage(error.message);
         }
-        console.log(decodedToken.permissions[0], "decodedToken")
-    } catch (error) {
-      setMessage(error.message);
-    }
-  };
+    };
 
   return(
     <>
