@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import './CompaniesList.css'
 import axios from 'axios'
 import { API_URL } from '../config'
-// import amazon from './../assets/logos/AMZN.png'
 
 function CompaniesList() {
     const [apiResponse, setApiResponse] = useState(null)
