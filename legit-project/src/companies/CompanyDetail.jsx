@@ -162,19 +162,9 @@ function CompanyDetail() {
                   <p onClick={less}>-</p><input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required /><p  onClick={sum}>+</p>
                 </div>    
                 <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>  
-                <button type="submit" className="btn" >Buy stocks</button>  
+                <button type="submit" className="btn" >Solicitar estos stocks</button>  
               </form>
 
-              <form id="try-prediction" className="form" onSubmit={handlePrediction}>
-                <div className="number-field">
-                <label htmlFor="days">Para cuantos días quieres la prediccion?</label>  
-                  <br></br>
-                  <p onClick={lessDays}>-</p><input type="number" name="days" id="days" value={days} onChange={e => handleDaysAdded(e.target.value)} required /><p  onClick={sumDays}>+</p>
-                </div>              
-                {/* <button onClick={() => handlePrediction()}>Obtener predicción</button> */}
-                <button type="submit" className="btn" >Obtener predicción</button>
-                <p>{msgPrediction}</p>
-              </form>
               {tbkToken ? (
                 <form method="post" action={tbkUrl}>
                   <input type="hidden" name="token_ws" value={tbkToken} />
