@@ -107,10 +107,20 @@ function MyProfile() {
                                         </button>
                                     </Link>
                                     { admin ? (
-                                    <Link to="/admin/auctions">
-                                        <button className="btn">See my offered auctions
+                                        <>
+                                    <Link to="/admin/offers">
+                                        <button className="btn">See offered auctions
                                         </button>
                                     </Link>
+                                    <Link to="/admin/my-proposals">
+                                        <button className="btn">See my proposals
+                                        </button>
+                                    </Link>
+                                    <Link to="/admin/auctions">
+                                        <button className="btn">See proposals waiting action
+                                        </button>
+                                    </Link>
+                                    </>
                                     ) : (<></>)}
                                     <p>Money: ${user2.Wallet}</p>
                                     </>

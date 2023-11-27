@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
 
 
-const Auctions = () => {
+const OfferedAuctions = () => {
   const [message, setMessage] = useState('');
   const [admin, setAdmin] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
@@ -63,24 +63,26 @@ const Auctions = () => {
 
 
   return (
+    <>
+      <h1>Offered Auctions</h1>
     <div>
       {msg && <p>{msg}</p>}
       {apiResponse && (
         <table>
           <thead>
             <tr>
-              <th>Auction ID</th>
+              <th>Stock ID</th>
               <th>Quantity</th>
-              <th>Type</th>
+              <th>Group</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {apiResponse.map((offer) => (
               <tr key={offer.auction_id}>
-                <td>{offer.auction_id}</td>
+                <td>{offer.stock_id}</td>
                 <td>{offer.quantity}</td>
-                <td>{offer.type}</td>
+                <td>{offer.group_id}</td>
                 <td>
                   <button onClick={() => handleButtonClick(offer.auction_id, offer.stock_id, offer.quantity)}>
                     Make a proposal
@@ -92,7 +94,7 @@ const Auctions = () => {
         </table>
       )}
     </div>
-  );
+  </>);
 };
 
-export default Auctions;
+export default OfferedAuctions;
