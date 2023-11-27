@@ -108,7 +108,7 @@ function MyProfile() {
                                     </Link>
                                     { admin ? (
                                     <Link to="/admin/auctions">
-                                        <button className="btn">See my auctions
+                                        <button className="btn">See my offered auctions
                                         </button>
                                     </Link>
                                     ) : (<></>)}

@@ -21,10 +21,10 @@ const Auctions = () => {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/auctions/all`)
+            .get(`${API_URL}/auctions/offers`)
             .then((response) => {
                 setApiResponse(response.data);
-                setMsg("Empresas obtenidas correctamente");
+                setMsg("ofertas obtenidas correctamente");
                 console.log(response.data)
             })
             .catch((error) => {
@@ -47,22 +47,52 @@ const Auctions = () => {
     }
   };
 
-  return(
-    <>
-        { admin ? (
-        <>
-        <h1>Portal de Subastas</h1>
-        <p>Aquí encontraras todas las subastas.</p>
-        </>
-        )
-        : (
-        <>
-        <h1>Error</h1>
-        <p>No tienes acceso a esta ventana (No eres usuario administrador).</p>
-        </>
-        )}
-    </>
-  )
+  const handleButtonClick = (AuctionId, StockId, Quantity) => {
+    // Add your logic for handling button click, e.g., navigate to another page
+    console.log(`Button clicked for auction with ID ${AuctionId}`);
+    axios
+      .post(`${API_URL}/auctions/propose`, {
+        auction_id: AuctionId,
+        stock_id: StockId,
+        quantity: Quantity,
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  };
+
+
+  return (
+    <div>
+      {msg && <p>{msg}</p>}
+      {apiResponse && (
+        <table>
+          <thead>
+            <tr>
+              <th>Auction ID</th>
+              <th>Quantity</th>
+              <th>Type</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {apiResponse.map((offer) => (
+              <tr key={offer.auction_id}>
+                <td>{offer.auction_id}</td>
+                <td>{offer.quantity}</td>
+                <td>{offer.type}</td>
+                <td>
+                  <button onClick={() => handleButtonClick(offer.auction_id, offer.stock_id, offer.quantity)}>
+                    Make a proposal
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
 };
 
 export default Auctions;
