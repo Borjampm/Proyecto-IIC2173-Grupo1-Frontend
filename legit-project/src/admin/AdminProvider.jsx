@@ -25,12 +25,12 @@ function AdminProvider({children}){
         }
     };
 
-    function logout(){
+    function logoutAdmin(){
         setIsAdmin(false);
     }
     
     return (
-        <AdminContext.Provider value={{isAdmin, setIsAdmin, logout}}>
+        <AdminContext.Provider value={{isAdmin, setIsAdmin, logoutAdmin}}>
             {children}
         </AdminContext.Provider>
     )
