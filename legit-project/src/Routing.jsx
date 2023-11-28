@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App'
 import MyProfile from './user/MyProfile'
 import MyStocks from './user/MyStocks'
+import AvailableStocks from './stocks/AvailableStocks'
 import LogIn from './user/LogIn';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
@@ -12,6 +13,8 @@ import ExternalApi from './ExternalApi';
 import Admin from './admin/Admin';
 import OfferedAuctions from './admin/OfferedAuctions';
 import MyProposalAuctions from './admin/MyProposalAuctions';
+import MyOffers from './admin/MyOffers';
+import OfferDetail from './admin/OfferDetail';
 
 function Routing() {
     return (
@@ -21,6 +24,7 @@ function Routing() {
                 <Route path="/" element={<App />} />
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/my-stocks" element={<MyStocks />} />
+                <Route path="/availablestocks" element={<AvailableStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/companies" element={<CompaniesList />} />
                 <Route path="/companies/:companySymbol" element={<CompanyDetail />} />
@@ -31,6 +35,8 @@ function Routing() {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/offers" element={<OfferedAuctions />} />
                 <Route path="/admin/my-proposals" element={<MyProposalAuctions />} />
+                <Route path="/admin/my-offers" element={<MyOffers />} />
+                <Route path="/admin/offer/:offerId" element={<OfferDetail />} />
             </Routes>
         </BrowserRouter>
         </>
