@@ -53,7 +53,7 @@ const MyOffers = () => {
 
   return (
     <>
-        <h1>My Offers</h1>
+        <h1>My Active Offers</h1>
         <div>
       {msg && <p>{msg}</p>}
       {apiResponse && (
