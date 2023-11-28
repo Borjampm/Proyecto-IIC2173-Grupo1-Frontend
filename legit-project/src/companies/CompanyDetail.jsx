@@ -69,6 +69,8 @@ function CompanyDetail() {
     const anotherToken = await getAccessTokenSilently();
     const tokenBearer = "Bearer " + anotherToken
 
+    console.log("COMPRANDO USUARIO 0")
+
     axios
       .post(`${API_URL}/transactions/buy`, {
         Username: user.sub,
@@ -99,6 +101,8 @@ function CompanyDetail() {
     const idToken = await getIdTokenClaims();
     const anotherToken = await getAccessTokenSilently();
     const tokenBearer = "Bearer " + anotherToken
+
+    console.log("COMPRANDO STOCKS ADMIN")
 
     axios
       .post(`${API_URL}/transactions/admin/buy`, {
@@ -164,6 +168,7 @@ function CompanyDetail() {
   const buyForm = () => {
     if (isAdmin) {
       return (
+        <>
         <form id="buy-stock" className="form" onSubmit={adminBuyStock}>
           <div className="number-field">
           <label htmlFor="number">Select the number of stocks you want to buy to Group 1 [ADMIN]</label>  
@@ -181,9 +186,11 @@ function CompanyDetail() {
         ):(<></>)}
 
         <p>{buymsg}</p>
+        </>
       )
     } else if (user) {
       return (
+        <>
         <form id="buy-stock" className="form" onSubmit={buyStock}>
           <div className="number-field">
           <label htmlFor="number">Select the number of stocks you want to buy</label>  
@@ -201,6 +208,7 @@ function CompanyDetail() {
         ):(<></>)}
 
         <p>{buymsg}</p>
+        </>
       )
     } else {
       return (

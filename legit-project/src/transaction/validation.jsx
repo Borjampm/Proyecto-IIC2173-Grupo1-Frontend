@@ -91,9 +91,9 @@ function Validation() {
                     <p>Transacción realizada</p>
                     {
                         isAdmin ? (
-                            <button onClick={() => handleBuy()}>Confirmar estado</button>
-                        ) : (
                             <button onClick={() => adminHandleBuy()}>Confirmar estado</button>
+                        ) : (
+                            <button onClick={() => handleBuy()}>Confirmar estado</button>
                         )
                     }
                 </>
@@ -107,7 +107,7 @@ function Validation() {
                     <button onClick={() => handlePDF()}>Obtener comprobate de compra</button>
                 </>
             ) : (
-                <p>Hubo un problema al realizar la compra</p>
+                <p>Compra pendiente...</p>
             )}
 
             {PDF ? (
@@ -115,7 +115,7 @@ function Validation() {
                     <button onClick={openExternalSite}>Abrir PDF</button>
                 </>
             ) : (
-                <p>Hubo un problema al generar el PDF</p>
+                <p>PDF pendiente...</p>
             )}
             
         </>
