@@ -12,6 +12,7 @@ import ExternalApi from './ExternalApi';
 import Admin from './admin/Admin';
 import OfferedAuctions from './admin/OfferedAuctions';
 import MyProposalAuctions from './admin/MyProposalAuctions';
+import GroupStocks from './admin/GroupStocks';  
 
 function Routing() {
     return (
@@ -31,6 +32,7 @@ function Routing() {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/offers" element={<OfferedAuctions />} />
                 <Route path="/admin/my-proposals" element={<MyProposalAuctions />} />
+                <Route path="/group_stocks" element={<GroupStocks />} />
             </Routes>
         </BrowserRouter>
         </>

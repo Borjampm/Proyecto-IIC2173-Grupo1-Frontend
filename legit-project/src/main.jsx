@@ -5,6 +5,7 @@ import Navbar from './common/Navbar'
 import './index.css'
 import { Auth0Provider } from '@auth0/auth0-react';
 import { DOMAIN, CLIENT_ID, REDIRECT_URI, SCOPE, AUTH0_AUDIENCE } from './config'
+import AdminProvider from './admin/AdminProvider'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Auth0Provider
@@ -17,8 +18,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     }}
     scope={SCOPE}
   >
-    <Navbar />
-    <Routing />
-
+    <AdminProvider>
+      <Navbar />
+      <Routing />
+    </AdminProvider>
   </Auth0Provider>
 )

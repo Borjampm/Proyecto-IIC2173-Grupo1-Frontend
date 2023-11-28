@@ -27,6 +27,7 @@ function Navbar() {
                 <ul>
                     <NavbarItem text={"Home"} link={"/"}/>
                     <NavbarItem text={"Companies"} link={"/companies"}/>
+                    <NavbarItem text={"Group Stocks"} link={"/group_stocks"}/>
 
                     <div className="right">
                     {user ? (
