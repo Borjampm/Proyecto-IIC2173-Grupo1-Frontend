@@ -10,6 +10,7 @@ const CLIENT_ID = "Ss50jxHUP31QbXzYJHn2NHOiDP5CFrOP";
 const REDIRECT_URI = `${FRONT_PROXY}/my-profile/`;
 const SCOPE = "openid profile email logins_count";
 const AUTH0_AUDIENCE = "http://grupo1-api/";
+const ADMIN_SUB = "auth0|6560ef1a17b4bdb501123691";
 
 
-export { FRONT_PROXY, API_URL, DOMAIN, CLIENT_ID, REDIRECT_URI, SCOPE, AUTH0_AUDIENCE };
+export { FRONT_PROXY, API_URL, DOMAIN, CLIENT_ID, REDIRECT_URI, SCOPE, AUTH0_AUDIENCE, ADMIN_SUB };

@@ -31,15 +31,18 @@ const AdminStocks = () => {
                         {
                             apiResponse ? (
                                 apiResponse.map((company) =>
-                                    <Link key={company.symbol} to={`/companies/${company.symbol}`}>
-                                        <div className="company">
-                                            <div className="company-text">
-                                                <h3>{ company.shortName }</h3>
-                                                <p>{ company.price }</p>
-                                                <p>{ company.symbol }</p>
-                                            </div>
+                                    <div key={company.symbol}>
+                                        <p>=====================</p>
+                                        <div>
+                                            <h3>{company.shortName}</h3>
+                                            <p>{company.symbol}</p>
+                                            <p>{company.price}</p>
                                         </div>
-                                    </Link>
+                                        <Link key={company.symbol} to={`/companies/${company.symbol}`}>
+                                            Ver Página de Detalles
+                                        </Link>
+                                        <p>=====================</p>
+                                    </div>
                                 )
                             ) : (
                                 <p>Loading companies...</p>

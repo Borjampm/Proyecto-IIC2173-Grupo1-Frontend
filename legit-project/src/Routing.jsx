@@ -10,7 +10,7 @@ import MyPredictions from './user/MyPredictions';
 import Prediction from './user/Prediction';
 import ExternalApi from './ExternalApi';
 import Auctions from './admin/Auctions';
-import AdminStocks from './admin/Stocks';
+import AdminStocks from './companies/AdminStocks';
 
 function Routing() {
     return (
@@ -28,7 +28,7 @@ function Routing() {
                 <Route path="/my-predictions/:predictionId" element={<Prediction />} />
                 <Route path="/external-api" element={<ExternalApi />} />
                 <Route path="/admin/auctions" element={<Auctions />} />
-                <Route path="/admin/stocks" element={<AdminStocks />} />
+                <Route path="/grupo-1/stocks" element={<AdminStocks />} />
             </Routes>
         </BrowserRouter>
         </>

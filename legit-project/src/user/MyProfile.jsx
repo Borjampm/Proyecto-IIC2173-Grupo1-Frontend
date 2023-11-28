@@ -102,10 +102,6 @@ function MyProfile() {
                                         <button className="btn">See my stocks
                                         </button>
                                     </Link>
-                                    <Link to="/my-predictions">
-                                        <button className="btn">See my predictions
-                                        </button>
-                                    </Link>
                                     { admin ? (
                                     <Link to="/admin/auctions">
                                         <button className="btn">See my auctions

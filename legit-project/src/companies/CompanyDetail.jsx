@@ -1,23 +1,23 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom';
 import './CompanyDetail.css'
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
+import { AdminContext } from '../admin/AdminContext';
 
 function CompanyDetail() {
+  const { isAdmin } = useContext(AdminContext);
+
   const { user, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
   const { companySymbol } = useParams();
   const [page, setPage] = useState(1);
-  const [msg, setMsg] = useState("");
   const [buymsg, setBuymsg] = useState("");
   const [stocksAdded, setStocksAdded] = useState(1)
-  const [apiResponse, setApiResponse] = useState(null)
+  const [apiResponse, setApiResponse] = useState([])
   const [lastStockValue, setLastStockValue] = useState(null);
   const [tbkUrl, setTbkUrl] = useState("")
   const [tbkToken, setTbkToken] = useState("")
-  const [days, setDays] = useState(1)
-  const [msgPrediction, setMsgPrediction] = useState("");
 
   function getDateComponents(dateString) {
     const date = new Date(dateString);
@@ -41,10 +41,9 @@ function CompanyDetail() {
       .get(`${API_URL}/stocks/${companySymbol}?page=${page}`) 
       .then((response) => {
         setApiResponse(response.data.history);
-        setMsg("Información obtenida correctamente");
       })
       .catch((error) => {
-        setMsg(`Error al obtener la información de las empresas ${error.response.data.message}`)
+        console.log(error);
       });
   }, [page, companySymbol]);
 
@@ -53,10 +52,11 @@ function CompanyDetail() {
     axios
       .get(`${API_URL}/stocks/`) 
       .then((response) => {
-        const lastStocksValues = response.data
+        const lastStocksValues = response.data;
         setLastStockValue(lastStocksValues[companySymbol]);
       })
       .catch((error) => {
+        console.log(error);
       });
   }, [page, tbkUrl, tbkToken, companySymbol]);
 
@@ -67,25 +67,32 @@ function CompanyDetail() {
     const anotherToken = await getAccessTokenSilently();
     const tokenBearer = "Bearer " + anotherToken
 
+    let finalUrl = "";
+
+    if (isAdmin) {
+      finalUrl = `${API_URL}/transactions/buy/admin`;
+    } else {
+      finalUrl = `${API_URL}/transactions/buy`;
+    }
+
     axios
-      .post(`${API_URL}/transactions/buy`, {
-        Username: user.sub,
-        Quantity: stocksAdded,
-        Symbol: companySymbol,
-        IPAddres: user.custom_metadata.ip_adress,
-        Price: apiResponse.slice(-1)[0].price
-      },
-      {
-        headers: {
-          Authorization: tokenBearer
-        }
+      .post(finalUrl, {
+          Username: user.sub,
+          Quantity: stocksAdded,
+          Symbol: companySymbol,
+          IPAddres: user.custom_metadata.ip_adress,
+          Price: apiResponse.slice(-1)[0]?.price
+        },
+        {
+          headers: {
+            Authorization: tokenBearer
+          }
       })
       .then((response) => {
         console.log("tooken", response.data);
         setTbkToken(response.data.token);
         setTbkUrl(response.data.url);
-         //TODO: esto solo debe redirecccionar si es que tenía plata
-        setMsg("Compradas, ve el estado de tus compras aqui")
+        // TODO: esto solo debe redirecccionar si es que tenía plata
       })
       .catch((error) => {
         setBuymsg("Error al comprar stocks")
@@ -114,38 +121,6 @@ function CompanyDetail() {
     }
   }
 
-  function buy() {
-    console.log("works");
-  }
-
-  function lessDays() {
-    if (days - 1 > 0) {
-      setDays(days - 1)
-    }
-  }
-
-  function sumDays() {
-      setDays(days + 1)
-  }
-
-  function handlePrediction(e) {
-    e.preventDefault();
-    axios
-      .post(`${API_URL}/predictions`, {
-        DaysBack: days,
-        Symbol: companySymbol,
-        Quantity: stocksAdded,
-        Id: user.sub
-      })
-      .then((response) => {
-        setMsgPrediction("La solicitud de predicciones fue enviada, ve a Tu Perfil en un rato para ver el resultado")
-      })
-      .catch((error) => {
-        console.log(error)
-        setMsgPrediction("No se pudo realizar la predicción, intenta denuevo más tarde.")
-      })
-  }
-
   return (
     <>
       <div className='company-detail'>
@@ -162,7 +137,7 @@ function CompanyDetail() {
                   <p onClick={less}>-</p><input type="number" name="number" id="number" value={stocksAdded} onChange={e => handleStocksAdded(e.target.value)} required /><p  onClick={sum}>+</p>
                 </div>    
                 <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>  
-                <button type="submit" className="btn" >Solicitar estos stocks</button>  
+                <button type="submit" className="btn" >Solicitar stocks</button>  
               </form>
 
               {tbkToken ? (
