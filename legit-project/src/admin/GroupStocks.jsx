@@ -9,12 +9,14 @@ const PRICE = 100
 
 function GroupStocks() {
     const { user, getIdTokenClaims, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    const [groupStocks, setGroupStocks] = useState(null)    // Variable que almacena los datos de la API para utilizarlo después
-    const [msg, setMsg] = useState("")
+    const [groupStocks, setGroupStocks] = useState(null);  // Variable que almacena los datos de la API para utilizarlo después
+    const [msg, setMsg] = useState("");
+    const [buymsg, setBuymsg] = useState("");
+    const [apiResponse, setApiResponse] = useState(null)
     const { isAdmin } = useContext(AdminContext);
-    const [tbkUrl, setTbkUrl] = useState("")
-    const [tbkToken, setTbkToken] = useState("")
-    const [stocksAdded, setStocksAdded] = useState(1)
+    const [tbkUrl, setTbkUrl] = useState("");
+    const [tbkToken, setTbkToken] = useState("");
+    const [stocksAdded, setStocksAdded] = useState(1);
 
     useEffect(() => {
         if (user) {
@@ -22,6 +24,7 @@ function GroupStocks() {
                 .get(`${API_URL}/availablestocks/all`)
                 .then((response) => {
                     setGroupStocks(response.data);
+                    console.log(response.data)
                     setMsg("Información de stocks obtenida correctamente");
                 })
                 .catch((error) => {
@@ -33,7 +36,7 @@ function GroupStocks() {
         }
     }, [user]);
 
-    const handleFractionBuy = async(e) => {
+    const handleFractionBuy = async(e, stock) => {
         e.preventDefault();
         const idToken = await getIdTokenClaims();
         const anotherToken = await getAccessTokenSilently();
@@ -42,12 +45,12 @@ function GroupStocks() {
         console.log("COMPRANDO USUARIO 0")
 
         axios
-            .post(`${API_URL}/transactions/buy`, {
+            .post(`${API_URL}/transactions/fraction/buy`, {
                 Username: user.sub,
                 Quantity: stocksAdded,
-                Symbol: companySymbol,
+                Symbol: stock.company_symbol,
                 IPAddres: user.custom_metadata.ip_adress,
-                Price: apiResponse.slice(-1)[0].price
+                Price: stock.price
             },
             {
                 headers: {
@@ -98,13 +101,13 @@ function GroupStocks() {
                         return (
                             <>
                                 <p key={i}>
-                                Company: {stock.stock_id} | Quantity: {stock.amount} | Price: {PRICE}
+                                Company: {stock.company_name} | Quantity: {stock.amount} | Fraction Price: {stock.price}
                                 </p>
                                 {isAdmin ? (
                                     <p>Ve tus stocks en tu perfil</p>
                                 ) : (
                                     <>
-                                        <form id="buy-stock" className="form" onSubmit={handleFractionBuy}>
+                                        <form id="buy-stock" className="form" onSubmit={(e) => handleFractionBuy(e, stock)}>
                                             <div className="number-field">
                                                 <label htmlFor="number">Select the FRACTION of stocks you want to buy</label>  
                                                 <br></br>
@@ -130,6 +133,8 @@ function GroupStocks() {
                                                 <button type="submit" value="Ir a pagar">Ir a pagar</button>
                                             </form>
                                         ):(<></>)}
+
+                                        <p>{buymsg}</p>
                                     </>
                                 )}
                                 
