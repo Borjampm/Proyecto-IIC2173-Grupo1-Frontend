@@ -5,16 +5,26 @@ import { API_URL } from '../config'
 // import amazon from './../assets/logos/AMZN.png'
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { useAuth0 } from '@auth0/auth0-react';
+import { jwtDecode } from "jwt-decode";
+
+
 
 function AvailableStocks() {
     const [apiResponse, setApiResponse] = useState(null)
     const [showInput, setShowInput] = useState(false);
     const [selectedStockId, setSelectedStockId] = useState(null);
     const [quantity, setQuantity] = useState(0);
+    const { getAccessTokenSilently, user, getIdTokenClaims, isLoading, error, loginWithRedirect } = useAuth0();
+    const [admin, setAdmin] = useState(false);
 
 
     const [msg, setMsg] = useState("");
     const [page, setPage] = useState(1);
+
+    useEffect(() => {
+      callSecureApi();
+      }, []);
 
     useEffect(() => {
         axios
@@ -48,8 +58,60 @@ function AvailableStocks() {
           })
       };
 
+      const callSecureApi = async () => {
+        try {
+            const token = await getAccessTokenSilently();
+            const decodedToken = jwtDecode(token);
+            if (decodedToken.permissions[0] === "admin") {
+                console.log("admin")
+                setAdmin(true)
+            }
+            console.log(decodedToken.permissions[0], "decodedToken")
+        } catch (error) {
+        setMsg(error.message);
+        }
+    };
+
     const navigate = useNavigate();
 
+    console.log(admin);
+
+
+    if (!user) {
+      return (
+        <div className="companies-v-container">
+          <h1>Stocks</h1>
+          <p>Para ver las stocks disponibles, debes iniciar sesión.</p>
+        </div>
+      );
+    } else if (user && !admin) {
+      return (
+      <div className="companies-v-container">
+      { msg ? (
+        <></>
+      ): (
+        <p>Error obteniendo las stocks, intenta más tarde.</p>
+      )}
+      <h1>Stocks</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Stock Symbol</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {apiResponse && apiResponse.map((stock) => (
+            <tr key={stock.stock_id}>
+              <td>{stock.stock_id}</td>
+              <td>{stock.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    )}
+    else if (user && admin) {
     return (
         <div className="companies-v-container">
           { msg ? (
@@ -102,7 +164,7 @@ function AvailableStocks() {
           </table>
         </div>
     )
-
+                          }
 }
 
 export default AvailableStocks
