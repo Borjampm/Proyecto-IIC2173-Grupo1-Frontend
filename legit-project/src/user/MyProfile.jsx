@@ -32,7 +32,7 @@ function MyProfile() {
             }
             console.log(decodedToken.permissions[0], "decodedToken")
         } catch (error) {
-        setMessage(error.message);
+            setMsg(error.message);
         }
     };
 
@@ -66,7 +66,6 @@ function MyProfile() {
         if (p >= 0) {
             if (user) {
                 console.log(user)
-                console.log("QUE CHICHA")
                 const moneyBalance = p;
                 console.log(moneyBalance, "useeEEr")
             }
