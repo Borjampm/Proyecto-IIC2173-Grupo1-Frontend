@@ -16,6 +16,7 @@ import MyProposalAuctions from './admin/MyProposalAuctions';
 import MyOffers from './admin/MyOffers';
 import OfferDetail from './admin/OfferDetail';
 import MakeProposal from './admin/MakeProposal';
+import AllProposals from './admin/AllProposals';
 
 function Routing() {
     return (
@@ -39,6 +40,7 @@ function Routing() {
                 <Route path="/admin/my-offers" element={<MyOffers />} />
                 <Route path="/admin/offer/:offerId" element={<OfferDetail />} />
                 <Route path="/admin/proposal/:auctionId" element={<MakeProposal />} />
+                <Route path="/admin/all-my-proposals" element={<AllProposals />} />
             </Routes>
         </BrowserRouter>
         </>

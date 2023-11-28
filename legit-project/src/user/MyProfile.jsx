@@ -124,6 +124,10 @@ function MyProfile() {
                                         <button className="btn">See my offers
                                         </button>
                                     </Link>
+                                    <Link to="/admin/all-my-proposals">
+                                        <button className="btn">All my proposals
+                                        </button>
+                                    </Link>
                                     </>
                                     ) : (<></>)}
                                     <p>Money: ${user2.Wallet}</p>
