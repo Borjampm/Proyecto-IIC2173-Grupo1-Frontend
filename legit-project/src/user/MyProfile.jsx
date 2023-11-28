@@ -120,6 +120,10 @@ function MyProfile() {
                                         <button className="btn">See proposals waiting action
                                         </button>
                                     </Link>
+                                    <Link to="/admin/my-offers">
+                                        <button className="btn">See my offers
+                                        </button>
+                                    </Link>
                                     </>
                                     ) : (<></>)}
                                     <p>Money: ${user2.Wallet}</p>
