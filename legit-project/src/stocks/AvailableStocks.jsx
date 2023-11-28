@@ -24,15 +24,39 @@ function AvailableStocks() {
         }, []
     );
 
+    const handleButtonClick = (StockId) => {
+        // Add your logic for handling button click, e.g., navigate to another page
+        console.log(`Button clicked for stock with ID ${StockId}`);
+    };
+
     return (
         <div className="companies-v-container">
-            { msg ? (
-                <></>
-            ): (
-                <p>Error obteniendo las stocks, intenta más tarde.</p>
-            )}
-            <h1>Stocks</h1>
-
+          { msg ? (
+            <></>
+          ): (
+            <p>Error obteniendo las stocks, intenta más tarde.</p>
+          )}
+          <h1>Stocks</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Stock ID</th>
+                <th>Amount</th>
+                <th>Offer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {apiResponse && apiResponse.map((stock) => (
+                <tr key={stock.stock_id}>
+                  <td>{stock.stock_id}</td>
+                  <td>{stock.amount}</td>
+                  <td>
+                    <button onClick={() => handleButtonClick(stock.stock_id)}>Select</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
     )
 
