@@ -68,12 +68,12 @@ function CompanyDetail() {
     const tokenBearer = "Bearer " + anotherToken
 
     axios
-      .post(`${API_URL}/transactions/buy`, {
+      .post(`${API_URL}/transactions/admin/buy`, {
         Username: user.sub,
         Quantity: stocksAdded,
         Symbol: companySymbol,
         IPAddres: user.custom_metadata.ip_adress,
-        Price: apiResponse.slice(-1)[0].price
+        Price: Math.floor(apiResponse.slice(-1)[0].price)
       },
       {
         headers: {
@@ -128,23 +128,6 @@ function CompanyDetail() {
       setDays(days + 1)
   }
 
-  function handlePrediction(e) {
-    e.preventDefault();
-    axios
-      .post(`${API_URL}/predictions/addTask`, {
-        DaysBack: days,
-        Symbol: companySymbol,
-        Quantity: stocksAdded,
-        Id: user.sub
-      })
-      .then((response) => {
-        setMsgPrediction("La solicitud de predicciones fue enviada, ve a Tu Perfil en un rato para ver el resultado")
-      })
-      .catch((error) => {
-        console.log(error)
-        setMsgPrediction("No se pudo realizar la predicción, intenta denuevo más tarde.")
-      })
-  }
 
   return (
     <>
@@ -163,17 +146,6 @@ function CompanyDetail() {
                 </div>    
                 <p>Total amount: ${Math.round(stocksAdded * lastStockValue)}</p>  
                 <button type="submit" className="btn" >Buy stocks</button>  
-              </form>
-
-              <form id="try-prediction" className="form" onSubmit={handlePrediction}>
-                <div className="number-field">
-                <label htmlFor="days">Para cuantos días quieres la prediccion?</label>  
-                  <br></br>
-                  <p onClick={lessDays}>-</p><input type="number" name="days" id="days" value={days} onChange={e => handleDaysAdded(e.target.value)} required /><p  onClick={sumDays}>+</p>
-                </div>              
-                {/* <button onClick={() => handlePrediction()}>Obtener predicción</button> */}
-                <button type="submit" className="btn" >Obtener predicción</button>
-                <p>{msgPrediction}</p>
               </form>
               {tbkToken ? (
                 <form method="post" action={tbkUrl}>

@@ -17,7 +17,7 @@ function Navbar() {
           console.error('Error during silent authentication:', err);
         }
       };
-  
+
       fetchData();
     }, [isLoading, getIdTokenClaims]);
 
@@ -27,6 +27,7 @@ function Navbar() {
                 <ul>
                     <NavbarItem text={"Home"} link={"/"}/>
                     <NavbarItem text={"Companies"} link={"/companies"}/>
+                    <NavbarItem text={"Group Stocks"} link={"/availableStocks"}/>
 
                     <div className="right">
                     {user ? (

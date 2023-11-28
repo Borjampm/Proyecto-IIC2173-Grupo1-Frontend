@@ -12,9 +12,11 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
     "axios": "^1.5.0",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
