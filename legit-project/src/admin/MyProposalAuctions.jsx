@@ -21,7 +21,7 @@ const MyProposalAuctions = () => {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/auctions/proposals`)
+            .get(`${API_URL}/auctions/my-proposals`)
             .then((response) => {
                 setApiResponse(response.data);
                 setMsg("porposals obtenidas correctamente");

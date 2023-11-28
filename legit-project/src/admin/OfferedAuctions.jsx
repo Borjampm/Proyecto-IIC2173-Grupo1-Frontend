@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
+import { useParams, Link } from 'react-router-dom';
 
 
 const OfferedAuctions = () => {
@@ -10,6 +11,7 @@ const OfferedAuctions = () => {
   const [admin, setAdmin] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [msg, setMsg] = useState("");
+  const { auction_id } = useParams();
 
   const serverUrl = API_URL;
 
@@ -84,9 +86,9 @@ const OfferedAuctions = () => {
                 <td>{offer.quantity}</td>
                 <td>{offer.group_id}</td>
                 <td>
-                  <button onClick={() => handleButtonClick(offer.auction_id, offer.stock_id, offer.quantity)}>
+                <Link key={offer.i} to={`/admin/proposal/${offer.auction_id}`}>
                     Make a proposal
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}
