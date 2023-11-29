@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
+import { AdminContext } from './AdminContext';
 
 
 const AllProposals = () => {
@@ -10,6 +11,7 @@ const AllProposals = () => {
   const [admin, setAdmin] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [msg, setMsg] = useState("");
+  const { isAdmin } = useContext(AdminContext);
 
   const serverUrl = API_URL;
 
@@ -63,6 +65,8 @@ const AllProposals = () => {
 
 
   return (
+    <>
+    {isAdmin ? (
     <div>
       <h1>All my proposals</h1>
       {msg && <p>{msg}</p>}
@@ -88,6 +92,10 @@ const AllProposals = () => {
         </table>
       )}
     </div>
+    ) : (
+      <h1>You dont have acces, you are not an Admin</h1>
+    )}
+</>
   );
 };
 
