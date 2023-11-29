@@ -72,12 +72,12 @@ function CompanyDetail() {
     console.log("COMPRANDO USUARIO 0")
 
     axios
-      .post(`${API_URL}/transactions/buy`, {
+      .post(`${API_URL}/transactions/admin/buy`, {
         Username: user.sub,
         Quantity: stocksAdded,
         Symbol: companySymbol,
         IPAddres: user.custom_metadata.ip_adress,
-        Price: apiResponse.slice(-1)[0].price
+        Price: Math.floor(apiResponse.slice(-1)[0].price)
       },
       {
         headers: {

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App'
 import MyProfile from './user/MyProfile'
 import MyStocks from './user/MyStocks'
+import AvailableStocks from './stocks/AvailableStocks'
 import LogIn from './user/LogIn';
 import CompaniesList from './companies/CompaniesList';
 import CompanyDetail from './companies/CompanyDetail';
@@ -13,6 +14,10 @@ import Admin from './admin/Admin';
 import OfferedAuctions from './admin/OfferedAuctions';
 import MyProposalAuctions from './admin/MyProposalAuctions';
 import GroupStocks from './admin/GroupStocks';  
+import MyOffers from './admin/MyOffers';
+import OfferDetail from './admin/OfferDetail';
+import MakeProposal from './admin/MakeProposal';
+import AllProposals from './admin/AllProposals';
 
 function Routing() {
     return (
@@ -22,6 +27,7 @@ function Routing() {
                 <Route path="/" element={<App />} />
                 <Route path="/my-profile" element={<MyProfile />} />
                 <Route path="/my-stocks" element={<MyStocks />} />
+                <Route path="/availablestocks" element={<AvailableStocks />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/companies" element={<CompaniesList />} />
                 <Route path="/companies/:companySymbol" element={<CompanyDetail />} />
@@ -33,6 +39,11 @@ function Routing() {
                 <Route path="/admin/offers" element={<OfferedAuctions />} />
                 <Route path="/admin/my-proposals" element={<MyProposalAuctions />} />
                 <Route path="/group_stocks" element={<GroupStocks />} />
+                <Route path="/admin/my-offers" element={<MyOffers />} />
+                <Route path="/admin/offer/:offerId" element={<OfferDetail />} />
+                <Route path="/admin/proposal/:auctionId" element={<MakeProposal />} />
+                <Route path="/admin/all-my-proposals" element={<AllProposals />} />
+
             </Routes>
         </BrowserRouter>
         </>

@@ -115,8 +115,16 @@ function MyProfile() {
                                         <button className="btn">See my proposals
                                         </button>
                                     </Link>
-                                    <Link to="/admin/auctions">
+                                    <Link to="/admin/my-proposals">
                                         <button className="btn">See proposals waiting action
+                                        </button>
+                                    </Link>
+                                    <Link to="/admin/my-offers">
+                                        <button className="btn">See my offers
+                                        </button>
+                                    </Link>
+                                    <Link to="/admin/all-my-proposals">
+                                        <button className="btn">All my proposals
                                         </button>
                                     </Link>
                                     </>

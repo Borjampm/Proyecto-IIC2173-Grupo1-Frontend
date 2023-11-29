@@ -3,15 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
-import { useParams, Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
-const OfferedAuctions = () => {
+const MyOffers = () => {
   const [message, setMessage] = useState('');
   const [admin, setAdmin] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [msg, setMsg] = useState("");
-
 
   const serverUrl = API_URL;
 
@@ -23,7 +22,7 @@ const OfferedAuctions = () => {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/auctions/offers`)
+            .get(`${API_URL}/auctions/my-offers`)
             .then((response) => {
                 setApiResponse(response.data);
                 setMsg("ofertas obtenidas correctamente");
@@ -49,25 +48,13 @@ const OfferedAuctions = () => {
     }
   };
 
-  const handleButtonClick = (AuctionId, StockId, Quantity) => {
-    // Add your logic for handling button click, e.g., navigate to another page
-    console.log(`Button clicked for auction with ID ${AuctionId}`);
-    axios
-      .post(`${API_URL}/auctions/propose`, {
-        auction_id: AuctionId,
-        stock_id: StockId,
-        quantity: Quantity,
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  };
+
 
 
   return (
     <>
-      <h1>Offered Auctions</h1>
-    <div>
+        <h1>My Active Offers</h1>
+        <div>
       {msg && <p>{msg}</p>}
       {apiResponse && (
         <table>
@@ -75,19 +62,17 @@ const OfferedAuctions = () => {
             <tr>
               <th>Stock ID</th>
               <th>Quantity</th>
-              <th>Group</th>
-              <th>Action</th>
+              <th>See proposals for offer</th>
             </tr>
           </thead>
           <tbody>
-            {apiResponse.map((offer) => (
+            {apiResponse.map((offer, i) => (
               <tr key={offer.auction_id}>
                 <td>{offer.stock_id}</td>
                 <td>{offer.quantity}</td>
-                <td>{offer.group_id}</td>
                 <td>
-                <Link key={offer.i} to={`/admin/proposal/${offer.auction_id}`}>
-                    Make a proposal
+                  <Link key={offer.i} to={`/admin/offer/${offer.auction_id}`}>
+                    Ver ofertas para esta oferta
                   </Link>
                 </td>
               </tr>
@@ -99,4 +84,4 @@ const OfferedAuctions = () => {
   </>);
 };
 
-export default OfferedAuctions;
+export default MyOffers;

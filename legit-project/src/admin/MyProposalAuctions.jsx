@@ -21,7 +21,7 @@ const MyProposalAuctions = () => {
 
     useEffect(() => {
         axios
-            .get(`${API_URL}/auctions/proposals`)
+            .get(`${API_URL}/auctions/my-proposals`)
             .then((response) => {
                 setApiResponse(response.data);
                 setMsg("porposals obtenidas correctamente");
@@ -64,7 +64,7 @@ const MyProposalAuctions = () => {
 
   return (
     <div>
-      <h1>My Proposal Auctions</h1>
+      <h1>My Waiting Proposal Auctions</h1>
       {msg && <p>{msg}</p>}
       {apiResponse && (
         <table>
@@ -72,21 +72,16 @@ const MyProposalAuctions = () => {
             <tr>
               <th>Stock ID</th>
               <th>Quantity</th>
-              <th>Group</th>
-              <th>Action</th>
+              <th>State</th>
             </tr>
           </thead>
           <tbody>
-            {apiResponse.map((offer) => (
-              <tr key={offer.auction_id}>
-                <td>{offer.stock_id}</td>
-                <td>{offer.quantity}</td>
-                <td>{offer.group_id}</td>
-                <td>
-                  <button onClick={() => handleButtonClick(offer.auction_id, offer.stock_id, offer.quantity)}>
-                    Make a proposal
-                  </button>
-                </td>
+            {apiResponse.map((offer, i) => (
+              <tr key={i}>
+                <td>{offer.offered_stock}</td>
+                <td>{offer.offered_quantity}</td>
+                <td>{offer.state}</td>
+
               </tr>
             ))}
           </tbody>
