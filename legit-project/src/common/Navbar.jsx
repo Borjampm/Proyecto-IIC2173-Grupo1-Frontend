@@ -28,7 +28,7 @@ function Navbar() {
                     <NavbarItem text={"Home"} link={"/"}/>
                     <NavbarItem text={"Companies"} link={"/companies"}/>
                     {/* <NavbarItem text={"Group Stocks Fractions"} link={"/group_stocks"}/> */}
-                    <NavbarItem text={"Group Stocks Auctions"} link={"/availableStocks"}/>
+                    <NavbarItem text={"Group Stocks"} link={"/availableStocks"}/>
 
                     <div className="right">
                     {user ? (
