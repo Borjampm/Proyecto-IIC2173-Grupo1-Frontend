@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import { API_URL } from '../config'
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSearchParams } from "react-router-dom";
+import { AdminContext } from '../admin/AdminContext';
 
 function Validation() {
-
+    const { isAdmin } = useContext(AdminContext);
     const { user } = useAuth0();
     const [searchParams] = useSearchParams();
     const [buyStatus, setBuyStatus] = useState();
@@ -14,6 +15,23 @@ function Validation() {
     const [transaction, setTransaction] = useState();
 
     const handleBuy = async(e) => {
+        console.log("token", searchParams.get("token_ws"))
+        console.log("user", user.sub)
+        axios.post(`${API_URL}/transactions/admin/webpay-result`, {
+            Username: user.sub,
+            Token: searchParams.get("token_ws")
+        }).then((response) => {
+            
+            console.log(response);
+            setBuyStatus(response.data);
+            setTransaction(response.data)
+            setMsg("Added to db")
+        }).catch((error) => {
+            setMsg("Not added to DB")
+        })    
+    }
+
+    const adminHandleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
         console.log("user", user.sub)
         axios.post(`${API_URL}/transactions/admin/webpay-result`, {
@@ -71,7 +89,13 @@ function Validation() {
             {searchParams.get("token_ws") ? (
                 <>
                     <p>Transacción realizada</p>
-                    <button onClick={() => handleBuy()}>Confirmar estado</button>
+                    {
+                        isAdmin ? (
+                            <button onClick={() => adminHandleBuy()}>Confirmar estado</button>
+                        ) : (
+                            <button onClick={() => handleBuy()}>Confirmar estado</button>
+                        )
+                    }
                 </>
             ) : (
                 <p>Transacción anulada</p>
@@ -83,7 +107,7 @@ function Validation() {
                     <button onClick={() => handlePDF()}>Obtener comprobate de compra</button>
                 </>
             ) : (
-                <p>:(</p>
+                <p>Compra pendiente...</p>
             )}
 
             {PDF ? (
@@ -91,7 +115,7 @@ function Validation() {
                     <button onClick={openExternalSite}>Abrir PDF</button>
                 </>
             ) : (
-                <p>:(((</p>
+                <p>PDF pendiente...</p>
             )}
             
         </>
