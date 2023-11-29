@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useSearchParams } from "react-router-dom";
 import { AdminContext } from '../admin/AdminContext';
 
-function Validation() {
+function AdminValidation() {
     const { isAdmin } = useContext(AdminContext);
     const { user } = useAuth0();
     const [searchParams] = useSearchParams();
@@ -17,7 +17,7 @@ function Validation() {
     const handleBuy = async(e) => {
         console.log("token", searchParams.get("token_ws"))
         console.log("user", user.sub)
-        axios.post(`${API_URL}/transactions/webpay-result`, {
+        axios.post(`${API_URL}/transactions/admin/webpay-result`, {
             Username: user.sub,
             Token: searchParams.get("token_ws")
         }).then((response) => {
@@ -123,4 +123,4 @@ function Validation() {
 
 }
 
-export default Validation
+export default AdminValidation

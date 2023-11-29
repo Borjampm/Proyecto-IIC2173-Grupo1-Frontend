@@ -140,10 +140,10 @@ function AvailableStocks() {
                         <button onClick={() => setSelectedStockId(stock.stock_id)}>Select</button>
                     )}
                     {selectedStockId === stock.stock_id && (
-                        <input 
-                            type="number" 
-                            min="0" 
-                            max={stock.amount} 
+                        <input
+                            type="number"
+                            min="0"
+                            max={stock.amount}
                             onChange={e => {
                                 const val = e.target.value;
                                 if (val < 0) {
@@ -162,7 +162,8 @@ function AvailableStocks() {
               ))}
             </tbody>
           </table>
-        </div>
+      </div>
+
     )
                           }
 }
