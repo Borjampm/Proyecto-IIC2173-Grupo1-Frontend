@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_URL } from '../config'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios'
 import { useParams, Link } from 'react-router-dom';
+import { AdminContext } from './AdminContext';
 
 
 const OfferedAuctions = () => {
@@ -11,6 +12,7 @@ const OfferedAuctions = () => {
   const [admin, setAdmin] = useState(false);
   const [apiResponse, setApiResponse] = useState(null)
   const [msg, setMsg] = useState("");
+  const { isAdmin } = useContext(AdminContext);
 
 
   const serverUrl = API_URL;
@@ -66,6 +68,8 @@ const OfferedAuctions = () => {
 
   return (
     <>
+    {isAdmin ? (
+    <>
       <h1>Offered Auctions</h1>
     <div>
       {msg && <p>{msg}</p>}
@@ -96,7 +100,11 @@ const OfferedAuctions = () => {
         </table>
       )}
     </div>
-  </>);
+  </>
+  ) : (
+    <h1>You dont have acces, you are not an Admin</h1>
+  )}
+</>);
 };
 
 export default OfferedAuctions;
